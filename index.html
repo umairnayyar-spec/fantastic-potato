@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoorTravel — Umrah Packages</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <header class="nav-wrapper" id="navbar">
+    <nav class="nav container">
+      <a href="#" class="logo">
+        <span class="logo-icon">☪</span>
+        <span class="logo-text">NoorTravel</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#included">What's Included</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Book Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <img
+      src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1600&auto=format&fit=crop&q=85"
+      alt="The Grand Mosque in Makkah at night"
+      class="hero-bg-img"
+    />
+    <div class="container hero-content">
+      <div class="hero-badge">✦ Trusted by 10,000+ pilgrims</div>
+      <h1 class="hero-title">
+        Your blessed journey <br />
+        <span class="gold-text">begins with us</span>
+      </h1>
+      <p class="hero-sub">
+        We take care of every detail — flights, hotels, visas, and guidance —
+        so you can focus entirely on your spiritual journey.
+      </p>
+      <div class="hero-actions">
+        <a href="#packages" class="btn btn-gold btn-large">View Packages</a>
+        <a href="#how-it-works" class="btn btn-ghost-white btn-large">How it works →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>10,000+</strong>
+          <span>Happy pilgrims</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>15 yrs</strong>
+          <span>Experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>4.9 ★</strong>
+          <span>Average rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REASSURANCE STRIP ── -->
+  <div class="reassurance-bar">
+    <div class="container reassurance-inner">
+      <div class="r-item">
+        <span class="r-icon">✈️</span>
+        <span>Flights included</span>
+      </div>
+      <div class="r-item">
+        <span class="r-icon">🏨</span>
+        <span>Hotel booked</span>
+      </div>
+      <div class="r-item">
+        <span class="r-icon">🛂</span>
+        <span>Visa assistance</span>
+      </div>
+      <div class="r-item">
+        <span class="r-icon">🕌</span>
+        <span>Guided Ziyarat</span>
+      </div>
+      <div class="r-item">
+        <span class="r-icon">🤝</span>
+        <span>24/7 Support</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PACKAGES ── -->
+  <section id="packages" class="section packages-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Our Packages</div>
+        <h2 class="section-title">Choose the journey <br />that's right for you</h2>
+        <p class="section-sub">
+          Every package is carefully designed to make your Umrah meaningful,
+          comfortable, and unforgettable — whatever your budget.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <!-- ECONOMY -->
+        <div class="card" id="economy-card">
+          <div class="card-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=700&auto=format&fit=crop&q=80"
+              alt="Pilgrims performing Tawaf around the Kaaba"
+              class="card-img"
+            />
+            <div class="card-img-label">Economy</div>
+          </div>
+          <div class="card-body">
+            <h3 class="plan-name">Economy</h3>
+            <p class="plan-tagline">A blessed journey — beautifully affordable.</p>
+            <div class="price-wrap">
+              <span class="price-from">From</span>
+              <span class="price">$1,899</span>
+              <span class="price-per">/ person</span>
+            </div>
+            <ul class="features">
+              <li class="feat feat-yes">Return economy class flights</li>
+              <li class="feat feat-yes">3-star hotel (800m from Haram)</li>
+              <li class="feat feat-yes">10-night stay (5 Makkah + 5 Madinah)</li>
+              <li class="feat feat-yes">Visa processing assistance</li>
+              <li class="feat feat-yes">Group Ziyarat tours</li>
+              <li class="feat feat-yes">Airport transfers</li>
+              <li class="feat feat-no">Private transport</li>
+              <li class="feat feat-no">Personal Mutawwif guide</li>
+            </ul>
+            <a href="#contact" class="btn btn-outline btn-full" data-plan="Economy">Book Economy</a>
+          </div>
+        </div>
+
+        <!-- ECONOMY PLUS -->
+        <div class="card card-popular" id="economy-plus-card">
+          <div class="popular-badge">✦ Most Popular</div>
+          <div class="card-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=700&auto=format&fit=crop&q=80"
+              alt="Al-Masjid an-Nabawi at dusk"
+              class="card-img"
+            />
+            <div class="card-img-label popular-label">Economy Plus</div>
+          </div>
+          <div class="card-body">
+            <h3 class="plan-name">Economy Plus</h3>
+            <p class="plan-tagline">More comfort, closer to the Haram.</p>
+            <div class="price-wrap">
+              <span class="price-from">From</span>
+              <span class="price">$2,799</span>
+              <span class="price-per">/ person</span>
+            </div>
+            <ul class="features">
+              <li class="feat feat-yes">Return economy class flights</li>
+              <li class="feat feat-yes">4-star hotel (400m from Haram)</li>
+              <li class="feat feat-yes">14-night stay (7 Makkah + 7 Madinah)</li>
+              <li class="feat feat-yes">Visa processing &amp; collection</li>
+              <li class="feat feat-yes">Private + group Ziyarat tours</li>
+              <li class="feat feat-yes">Private airport transfers</li>
+              <li class="feat feat-yes">Daily breakfast included</li>
+              <li class="feat feat-no">Personal Mutawwif guide</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-full" data-plan="Economy Plus">Book Economy Plus</a>
+          </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="card card-premium" id="premium-card">
+          <div class="card-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1551041782-3de99c6ade45?w=700&auto=format&fit=crop&q=80"
+              alt="Luxurious hotel room with city view"
+              class="card-img"
+            />
+            <div class="card-img-label premium-label">Premium</div>
+          </div>
+          <div class="card-body">
+            <h3 class="plan-name">Premium</h3>
+            <p class="plan-tagline">The finest Umrah experience, curated for you.</p>
+            <div class="price-wrap">
+              <span class="price-from">From</span>
+              <span class="price gold-text">$4,999</span>
+              <span class="price-per">/ person</span>
+            </div>
+            <ul class="features">
+              <li class="feat feat-yes">Business class flights</li>
+              <li class="feat feat-yes">5-star hotel (Haram-view, 50m away)</li>
+              <li class="feat feat-yes">21-night stay (flexible split)</li>
+              <li class="feat feat-yes">Full visa door-to-door service</li>
+              <li class="feat feat-yes">Exclusive private Ziyarat</li>
+              <li class="feat feat-yes">Luxury private transfers</li>
+              <li class="feat feat-yes">Full board (breakfast, lunch, dinner)</li>
+              <li class="feat feat-yes">Personal Mutawwif guide (24/7)</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold btn-full" data-plan="Premium">Book Premium</a>
+          </div>
+        </div>
+
+      </div><!-- /cards -->
+
+      <p class="cards-footnote">
+        Prices are per person based on double occupancy. Solo and family rates available.
+        <a href="#contact">Contact us</a> for a personalised quote — we love helping families plan together.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── WHAT'S INCLUDED ── -->
+  <section id="included" class="section included-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Everything Handled</div>
+        <h2 class="section-title">We take care of it all</h2>
+        <p class="section-sub">From the moment you book to the moment you return home, you're in good hands.</p>
+      </div>
+      <div class="included-grid">
+        <div class="included-item">
+          <div class="inc-icon">✈️</div>
+          <h4>Flights</h4>
+          <p>Return flights from your nearest airport, with assistance for check-in and baggage for peace of mind.</p>
+        </div>
+        <div class="included-item">
+          <div class="inc-icon">🏨</div>
+          <h4>Accommodation</h4>
+          <p>Carefully selected hotels in Makkah and Madinah, chosen for proximity to the Holy Mosques and comfort.</p>
+        </div>
+        <div class="included-item">
+          <div class="inc-icon">🛂</div>
+          <h4>Visa &amp; Paperwork</h4>
+          <p>Our experienced team handles the full Umrah visa application so you don't have to worry about paperwork.</p>
+        </div>
+        <div class="included-item">
+          <div class="inc-icon">🕌</div>
+          <h4>Guided Ziyarat</h4>
+          <p>Knowledgeable guides take you to the significant historical and spiritual sites across Makkah and Madinah.</p>
+        </div>
+        <div class="included-item">
+          <div class="inc-icon">🚌</div>
+          <h4>Transfers</h4>
+          <p>Comfortable, air-conditioned transfers between airports, hotels, and the Holy Mosques — always on time.</p>
+        </div>
+        <div class="included-item">
+          <div class="inc-icon">📞</div>
+          <h4>24/7 Support</h4>
+          <p>Our dedicated support team is available around the clock throughout your journey — just one call away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section id="how-it-works" class="section hiw-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">How It Works</div>
+        <h2 class="section-title">Your journey in four simple steps</h2>
+        <p class="section-sub">We've made booking your Umrah as smooth and stress-free as possible.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-icon-wrap">🗓️</div>
+          <h3>Choose your package</h3>
+          <p>Browse our Economy, Economy Plus, or Premium packages and pick the one that suits your needs and budget.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-icon-wrap">📋</div>
+          <h3>Complete your booking</h3>
+          <p>Fill in a short form with your details. Our friendly team will confirm everything and guide you through the paperwork.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-icon-wrap">🧳</div>
+          <h3>Prepare for departure</h3>
+          <p>We send you a full pre-travel pack — packing tips, Ihram guidance, duas, and a detailed itinerary.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-icon-wrap">🤲</div>
+          <h3>Perform your Umrah</h3>
+          <p>Arrive, and let us handle the rest. Focus on your ibadah while we take care of every logistics detail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO GALLERY ── -->
+  <section class="gallery-section">
+    <div class="gallery-grid">
+      <div class="gallery-item g-tall">
+        <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=800&auto=format&fit=crop&q=80" alt="Kaaba at night illuminated" />
+        <div class="gallery-caption">Al-Masjid Al-Haram, Makkah</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1566888596782-c7f41cc184c5?w=600&auto=format&fit=crop&q=80" alt="Pilgrims in white Ihram performing Tawaf" />
+        <div class="gallery-caption">Tawaf around the Kaaba</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600&auto=format&fit=crop&q=80" alt="Al-Masjid an-Nabawi in Madinah" />
+        <div class="gallery-caption">Al-Masjid an-Nabawi, Madinah</div>
+      </div>
+      <div class="gallery-item g-wide">
+        <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&auto=format&fit=crop&q=80" alt="Aerial view of pilgrims in Makkah" />
+        <div class="gallery-caption">The sacred city of Makkah</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Testimonials</div>
+        <h2 class="section-title">Words from our pilgrims</h2>
+        <p class="section-sub">Alhamdulillah — thousands of families have trusted us with their most precious journey.</p>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"NoorTravel made our family Umrah completely stress-free. Every detail was handled with such care and warmth. The Economy Plus package was exceptional value — our hotel was beautiful and so close to the Haram."</p>
+          <div class="t-author">
+            <img src="https://i.pravatar.cc/60?img=47" alt="Sister Fatima A." class="t-avatar" />
+            <div>
+              <strong>Sister Fatima A.</strong>
+              <span>Manchester, UK</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial testimonial-featured">
+          <div class="quote-mark">"</div>
+          <div class="stars">★★★★★</div>
+          <p>"I am a first-time pilgrim and was so nervous. The team at NoorTravel held my hand through every step — from visa to the moment I stood in front of the Kaaba. I will never forget this experience. May Allah reward them."</p>
+          <div class="t-author">
+            <img src="https://i.pravatar.cc/60?img=60" alt="Brother Yusuf K." class="t-avatar" />
+            <div>
+              <strong>Brother Yusuf K.</strong>
+              <span>Toronto, Canada</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"We booked the Premium package for my elderly parents and it was absolutely worth every penny. The personal Mutawwif guide was incredible — patient, knowledgeable, and so kind. I cannot recommend NoorTravel enough."</p>
+          <div class="t-author">
+            <img src="https://i.pravatar.cc/60?img=15" alt="Brother Imran S." class="t-avatar" />
+            <div>
+              <strong>Brother Imran S.</strong>
+              <span>Dubai, UAE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="section faq-section">
+    <div class="container faq-container">
+      <div class="section-header">
+        <div class="section-badge">FAQ</div>
+        <h2 class="section-title">Questions? We're here for you.</h2>
+        <p class="section-sub">Everything you need to know before you book.</p>
+      </div>
+      <div class="faqs">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What documents do I need for Umrah?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>You will need a valid passport (at least 6 months validity), a completed Umrah visa application, passport-sized photographs, and proof of vaccination. Our team will guide you through exactly what's required and assist with the full application process.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I customise my package dates?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>Absolutely! We offer departures throughout the year. Simply contact us with your preferred dates and we'll tailor the package to suit your schedule. We can also adjust the duration of your stay in Makkah and Madinah.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Is this suitable for elderly or disabled pilgrims?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes, very much so. We have extensive experience supporting elderly and disabled pilgrims. Our Premium package includes a personal Mutawwif guide and private wheelchair-accessible transport. Please let us know your requirements when booking and we will make every arrangement needed.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            How far are the hotels from the Haram?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>Economy hotels are within 800m of the Haram, Economy Plus within 400m, and Premium hotels are directly adjacent to the Haram — some with views of the Kaaba. We carefully select accommodation to make your journey as easy as possible.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            What if I need help during my trip?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>Our support team is available 24/7 throughout your entire journey. You'll have a dedicated contact number before departure. Whether it's a question about your itinerary or an urgent matter, we are always just a call away.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Do you offer group or family discounts?
+            <span class="faq-chevron">›</span>
+          </button>
+          <div class="faq-a">
+            <p>Yes! Groups of 5 or more receive a 10% discount, and we offer special family rates for children. We love helping families perform Umrah together — contact us and we'll put together a personalised group quote for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner">
+    <div class="cta-overlay"></div>
+    <img
+      src="https://images.unsplash.com/photo-1537944434965-cf4679d1a598?w=1600&auto=format&fit=crop&q=70"
+      alt="Pilgrims at the Kaaba"
+      class="cta-bg-img"
+    />
+    <div class="container cta-inner">
+      <h2>Begin your journey to the <span class="gold-text">House of Allah</span></h2>
+      <p>Take the first step today. Our team is ready to help you plan the Umrah of a lifetime.</p>
+      <a href="#contact" class="btn btn-gold btn-large">Book Your Umrah Now</a>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="section contact-section">
+    <div class="container contact-wrap">
+      <div class="contact-info">
+        <div class="section-badge">Get In Touch</div>
+        <h2 class="section-title">Let's plan your Umrah together</h2>
+        <p>Fill in the form and one of our friendly advisors will reach out within a few hours, In sha Allah. We love answering questions — no question is too small.</p>
+        <ul class="contact-details">
+          <li>
+            <span class="c-icon">📞</span>
+            <div><strong>+44 800 123 4567</strong><small>Mon–Sat, 9am–7pm</small></div>
+          </li>
+          <li>
+            <span class="c-icon">✉️</span>
+            <div><strong>bookings@noortravel.com</strong><small>We reply within 2 hours</small></div>
+          </li>
+          <li>
+            <span class="c-icon">💬</span>
+            <div><strong>WhatsApp us</strong><small>Quick questions, fast answers</small></div>
+          </li>
+        </ul>
+        <div class="contact-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1519817650390-64a993f9d5ac?w=600&auto=format&fit=crop&q=80"
+            alt="Friendly travel consultant helping a family"
+            class="contact-img"
+          />
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your full name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Ahmed Al-Rashid" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="ahmed@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
+          </div>
+          <div class="form-group">
+            <label for="travellers">Number of travellers</label>
+            <input type="number" id="travellers" name="travellers" min="1" placeholder="e.g. 2" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="plan">Package of interest</label>
+          <select id="plan" name="plan">
+            <option value="">Not sure yet — please advise me</option>
+            <option value="economy">Economy</option>
+            <option value="economy-plus">Economy Plus</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything you'd like us to know</label>
+          <textarea id="message" name="message" rows="4" placeholder="e.g. preferred travel dates, any special requirements, elderly family members…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          Send Enquiry — Barakallahu Feekum 🤲
+        </button>
+        <div class="form-success" id="form-success" hidden>
+          <span>✅</span> JazakAllahu Khayran! We've received your enquiry and will be in touch very soon, In sha Allah.
+        </div>
+        <p class="form-note">We respect your privacy. Your details are never shared with third parties.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo logo-light">
+          <span class="logo-icon">☪</span>
+          <span class="logo-text">NoorTravel</span>
+        </a>
+        <p>Serving the Ummah since 2009 — helping families perform Umrah with ease, dignity, and peace of mind.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">in</a>
+          <a href="#" aria-label="WhatsApp">W</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <strong>Packages</strong>
+          <a href="#packages">Economy</a>
+          <a href="#packages">Economy Plus</a>
+          <a href="#packages">Premium</a>
+          <a href="#contact">Custom Quote</a>
+        </div>
+        <div class="footer-col">
+          <strong>Company</strong>
+          <a href="#">About NoorTravel</a>
+          <a href="#">Our Team</a>
+          <a href="#">ATOL Protection</a>
+          <a href="#">Accreditations</a>
+        </div>
+        <div class="footer-col">
+          <strong>Help</strong>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#">Umrah Guide</a>
+          <a href="#">Dua Book</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 NoorTravel. All rights reserved. ATOL Protected.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -390,7 +390,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-right: 2px;
 }
 .price {
-  font-size: 2rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--green);
 }

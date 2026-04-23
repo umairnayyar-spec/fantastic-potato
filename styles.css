@@ -698,8 +698,39 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .c-icon { font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
 .contact-details strong { display: block; font-size: .95rem; color: var(--gray-800); }
 .contact-details small  { font-size: .8rem; color: var(--gray-400); }
-.contact-img-wrap { border-radius: var(--radius); overflow: hidden; }
-.contact-img { width: 100%; height: 220px; object-fit: cover; }
+.flags-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.flag-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.flag-emoji {
+  font-size: 4.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.15));
+}
+.flag-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  letter-spacing: .04em;
+}
+.flags-connector {
+  font-size: 1.5rem;
+  color: var(--gold);
+  font-weight: 700;
+}
 
 .contact-form {
   background: var(--white);

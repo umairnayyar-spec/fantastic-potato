@@ -638,6 +638,140 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .faq-a p { font-size: .9rem; color: var(--gray-600); line-height: 1.7; }
 
 /* ── CTA BANNER ── */
+/* ── DETAILED PRICING SECTION ── */
+.pricing-section { background: var(--off-white); }
+
+.route-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--green);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.route-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+}
+.route-item .route-icon { font-size: 1.6rem; }
+.route-item strong { display: block; font-size: .8rem; opacity: .7; text-transform: uppercase; letter-spacing: .06em; }
+.route-item span { font-size: .95rem; font-weight: 600; }
+.route-divider { width: 1px; height: 40px; background: rgba(255,255,255,.25); margin: 0 16px; }
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.pricing-table th, .pricing-table td {
+  padding: 11px 14px;
+  text-align: center;
+  border: 1px solid var(--gray-200);
+}
+.pricing-table thead th {
+  background: var(--green);
+  color: var(--white);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .04em;
+}
+.th-group { font-size: .85rem; }
+.th-15 { background: #1b5e3b !important; }
+.th-21 { background: #a87730 !important; }
+.pricing-table tbody tr:nth-child(even) { background: var(--gray-100); }
+.pricing-table tbody tr:hover { background: var(--green-light); }
+.pricing-table td:first-child { font-weight: 600; color: var(--gray-600); }
+.pkg-num {
+  background: var(--green);
+  color: var(--white) !important;
+  font-weight: 700 !important;
+  border-radius: 4px;
+  text-align: center;
+}
+.na { color: var(--gray-400); font-style: italic; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.info-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1.5px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+}
+.info-card-title {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--green-light);
+}
+.info-card-title.mt { margin-top: 20px; }
+
+.dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.date-badge {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green);
+  font-weight: 600;
+  font-size: .85rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(27,94,59,.15);
+}
+
+.inc-list { display: flex; flex-direction: column; gap: 8px; }
+.inc-list li {
+  font-size: .875rem;
+  padding-left: 22px;
+  position: relative;
+  color: var(--gray-600);
+}
+.inc-yes::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.inc-no::before  { content: '✗'; position: absolute; left: 0; color: #e05454; font-weight: 700; }
+.terms-note { font-size: .75rem; color: var(--gray-400); margin-top: 14px; }
+
+.agents-list { display: flex; flex-direction: column; gap: 16px; }
+.agent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.agent-icon { font-size: 1.6rem; }
+.agent strong { display: block; font-size: .9rem; color: var(--gray-800); }
+.agent a {
+  font-size: .85rem;
+  color: var(--green);
+  font-weight: 600;
+}
+.agent a:hover { text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .route-banner { flex-direction: column; text-align: center; }
+  .route-divider { width: 80%; height: 1px; margin: 4px 0; }
+}
+
+/* ── CTA BANNER ── */
 .cta-banner {
   position: relative;
   padding: 120px 0;

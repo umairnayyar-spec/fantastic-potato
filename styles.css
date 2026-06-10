@@ -524,6 +524,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .gallery-item:hover img { transform: scale(1.04); }
 .g-tall { grid-row: 1 / 3; }
 .g-wide { grid-column: 2 / 4; }
+.gallery-flag-wrap {
+  width: 100%; height: 100%;
+  background: #006c35;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.gallery-flag-emoji {
+  font-size: 5rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.3));
+}
+.gallery-flag-text {
+  font-size: .85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
 .gallery-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;

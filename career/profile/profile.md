@@ -6,42 +6,46 @@
 
 ## Identity
 
-- **Full name:** Umair Nayyar Khan  <!-- TODO: confirm exact legal name for applications -->
+- **Full name:** Umair Nayyar Khan
 - **Preferred name:** Umair
 - **Email:** umair.nayyar@gmail.com
-- **Phone:** TODO (+44 / +966 / ... include country code)
-- **Location:** TODO (city, country)
-- **LinkedIn:** TODO (https://www.linkedin.com/in/...)
-- **Portfolio / website:** TODO (or "none")
-- **GitHub:** TODO (or "none")
+- **Phone:** +92 300 5240000
+- **Location:** Islamabad, Pakistan
+- **LinkedIn:** https://www.linkedin.com/in/umairkhan99/
+- **Portfolio / website:** none
+- **GitHub:** none
 
 ## Work authorization
 
-- **Citizenship:** TODO
-- **Countries where I can work without sponsorship:** TODO
-- **Need visa sponsorship for:** TODO
-- **Willing to relocate:** TODO (yes/no — where)
+- **Citizenship:** Pakistan (TODO: confirm)
+- **Countries where I can work without sponsorship:** Pakistan; remote roles
+- **Need visa sponsorship for:** GCC/MENA and EU/Sweden relocation (TODO: confirm any existing visas/permits)
+- **Willing to relocate:** Yes — GCC/MENA; Sweden/EU (per CV variants)
 
 ## Current situation
 
-- **Current/most recent title:** TODO
-- **Current/most recent employer:** TODO
-- **Notice period / availability:** TODO (e.g. "1 month notice", "immediately")
-- **Reason for looking:** TODO (one honest sentence — used to answer "why are you leaving?")
+- **Current/most recent title:** Senior HR Partner
+- **Current/most recent employer:** ImagineArt (AI product company) — role ended June 2026
+- **Notice period / availability:** Available immediately
+- **Reason for looking:** "My ImagineArt engagement was a build-the-function
+  mandate that concluded in June 2026. I'm now looking for my next long-term
+  senior People leadership role with broader scope — ideally an international
+  move (GCC or EU), though open to remote and Pakistan-based roles."
 
 ## Compensation
 
-- **Current base salary:** TODO (only shared if a form requires it)
-- **Target base salary:** TODO
-- **Absolute minimum:** TODO (offers below this are auto-declined)
-- **Currency:** TODO
+- **Approach:** Flexible / market-dependent (confirmed 2026-07-14). No hard
+  target — flag the salary on each opening and Umair decides case by case.
+- **On forms that force a number:** enter "negotiable" where text is allowed;
+  where a number is mandatory, pause and ask Umair for that specific role.
+- **Current base salary:** only shared if a form makes it mandatory — ask first.
 
 ## Standard application answers
 
 Common form questions, answered once so they're always consistent:
 
-- **Years of total experience:** TODO
-- **Highest education:** TODO (degree, institution, year)
+- **Years of total experience:** 14 (2011–present; some CV versions say 12+ — use 14+ going forward)
+- **Highest education:** Master's in Human Resource Management, SZABIST (TODO: year)
 - **Gender / ethnicity / veteran / disability (voluntary EEO questions):** "Prefer not to say" unless stated otherwise here: TODO
 - **How did you hear about us?** "LinkedIn / company careers page" unless a referral applies
 - **Willing to undergo background check:** TODO (usually yes)

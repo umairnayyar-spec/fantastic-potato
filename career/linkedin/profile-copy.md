@@ -2,7 +2,8 @@
 
 > For https://www.linkedin.com/in/umairkhan99/ — drafted 2026-07-14 from the
 > master resume. Paste manually into LinkedIn (no automation).
-> Status: DRAFT v1 — pending Umair's answers to the gap questions at the bottom.
+> Status: DRAFT v2 — gap answers folded in (63→238 growth, <5% attrition,
+> comp structures, education years, public trainings).
 
 ---
 
@@ -15,7 +16,7 @@
 > Senior HR Business Partner | Partnering VPs & C-suite across APAC, EU & Americas | Ex-Epic Games | Org Design · Talent · M&A Integration | Open to GCC, EU & Remote
 
 **Variant C — builder angle (for startup/scale-up Head of People searches):**
-> Head of People | I build People functions from zero — 3x senior-most HR leader | Ex-Epic Games, AI & gaming scale-ups | HR Ops · HRMIS · Org Design | 14+ yrs
+> Head of People | Scaled Quixel 63→238 with <5% attrition | 3x senior-most HR leader | Ex-Epic Games | HR Ops · HRMIS · Org Design | 14+ yrs
 
 ---
 
@@ -27,11 +28,12 @@ machinery underneath it, hands-on.
 
 At Epic Games I was Senior HRBP for APAC, Europe and the Americas: 450+
 employees, a team of 4 HRBPs, the HR integration of the Quixel acquisition,
-and restructurings across Product and Automotive. Before that I was the
-senior-most HR leader at Quixel through its scale-up and acquisition by Epic
-— where my team cut hiring cycle time from 57 to 38 days, moved 200+ people
-to a durable hybrid model, and gave leadership real KPI visibility into
-hiring, performance and attrition.
+restructurings across Product and Automotive, and benchmarking Epic's job
+levels for the Pakistan territory with the comp team. Before that I was the
+senior-most HR leader at Quixel as it scaled from 63 to 238 people — keeping
+attrition under 5% the whole way, cutting hiring cycle time from 57 to 38
+days, and moving 200+ people to a hybrid model that held productivity for
+three years.
 
 I've been the first senior People hire three times (Quixel, Trillium,
 ImagineArt), and I've personally deployed HRMIS and ATS platforms —
@@ -62,10 +64,11 @@ Quixel (incl. Sweden), and restructurings of Product, Product Strategy and
 Automotive. Co-led talent reviews, comp planning and performance cycles.
 
 **Manager HR / Head of HR Pakistan — Quixel (Epic Games) · Sep 2019 – Dec 2023**
-Senior-most HR leader through hypergrowth and acquisition by Epic Games.
-Cut hiring cycle from 57→38 days (Lever ATS), implemented HRMIS +
-self-service, MBO-based 360° performance, and moved 200+ employees to a
-hybrid model that held productivity for three years.
+Senior-most HR leader as Quixel scaled 63→238 employees through acquisition
+by Epic Games — with attrition held under 5%. Cut hiring cycle from 57→38
+days (Lever ATS), built comp structures, implemented HRMIS + self-service
+and MBO-based 360° performance, and moved 200+ employees to a hybrid model
+that held productivity for three years.
 
 **Senior Manager HR (Head of HR) — Trillium Information Security Systems · Apr 2016 – Aug 2019**
 Owned people strategy and HR transformation: competency frameworks, HiPo and
@@ -116,17 +119,12 @@ English (Full professional) · Urdu (Native) · Punjabi (Limited working)
 - [ ] Ask 2–3 former colleagues (ideally Epic/Quixel leaders) for a short
       recommendation — recruiters read the top two.
 
----
+## Education & certifications sections
 
-## GAP QUESTIONS — answers will strengthen this copy
-
-1. **Quixel growth numbers:** roughly how many employees when you joined in
-   2019 vs. at acquisition/peak? ("Scaled HR through growth from X to Y
-   people" is a headline-grade stat.)
-2. **Hiring volume:** roughly how many hires did your team make per year at
-   Quixel/Epic?
-3. **Engagement/retention numbers** at Quixel or Epic (eNPS, engagement
-   score, attrition %) you're allowed to share?
-4. **Budget or comp-cycle size** you owned (even approximate)?
-5. **Education years:** SZABIST Master's and NUST BBA — which years?
-6. **Anything public:** talks, panels, SHRM/CIPD membership, awards?
+- SZABIST — Master's in Human Resource Management (2013–2014)
+- NUST Business School — BBA Hons. (2007–2011)
+- Certifications to list: NLP Practitioner · Certified Behavioral
+  Interviewer · Six Sigma Practitioner · Certified Training Facilitator ·
+  Core Values Trainer · Situational Leadership · Radical Candor
+- Consider one Featured/About line on public facilitation: "I also run
+  public trainings on team building and people management."

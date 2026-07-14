@@ -65,6 +65,8 @@ angles, both true:
   business continuity.
 - Co-led talent reviews, retention planning, performance cycles, and
   compensation planning with functional leaders.
+- Worked with Epic's compensation team to benchmark Epic's job levels for
+  the Pakistan territory.
 - Rolled out 360-degree performance feedback and leadership development
   interventions, strengthening promotion readiness and leadership
   effectiveness.
@@ -77,8 +79,11 @@ angles, both true:
 **September 2019 – December 2023**
 
 - Senior-most HR leader in Pakistan, owning end-to-end people strategy,
-  operations, and service delivery during rapid growth and post-acquisition
-  integration into Epic Games.
+  operations, and service delivery as the company scaled from 63 to 238
+  employees, through acquisition by and integration into Epic Games.
+- Maintained attrition below 5% throughout the scale-up period.
+- Developed compensation structures for the organization (also see Epic
+  bullet on benchmarking Epic's levels for Pakistan).
 - Led a team of 3 HR/HRBP professionals; owned the full employee lifecycle —
   workforce planning, hiring, onboarding, performance management, benefits
   administration, development, engagement, and offboarding.
@@ -104,6 +109,7 @@ angles, both true:
   employee lifecycle.
 - Designed and implemented organization-wide competency frameworks, HiPo
   programs, and succession planning for business-critical roles.
+- Developed the organization's compensation structures.
 - Led organizational restructuring delivering 30% headcount optimization
   through strategic workforce planning.
 - Owned end-to-end Talent Acquisition, maintaining an average 27-day
@@ -131,17 +137,23 @@ angles, both true:
 
 ## Education
 
-- Master's in Human Resource Management — SZABIST
-- BBA (Hons.) — NUST Business School
+- Master's in Human Resource Management — SZABIST (2013–2014)
+- BBA (Hons.) — NUST Business School (2007–2011)
 
 ## Certifications
 
 - Six Sigma Practitioner
 - NLP Practitioner
 - Certified Training Facilitator
+- Certified Behavioral Interviewer
 - Situational Leadership
-- Behavioral Interviewing
 - Radical Candor
+- Core Values Trainer
+
+## Training & facilitation
+
+- Conducted public trainings on team building, people management, and
+  related leadership topics (beyond in-company facilitation).
 
 ## Skills
 

@@ -45,7 +45,7 @@
 Common form questions, answered once so they're always consistent:
 
 - **Years of total experience:** 14 (2011–present; some CV versions say 12+ — use 14+ going forward)
-- **Highest education:** Master's in Human Resource Management, SZABIST (TODO: year)
+- **Highest education:** Master's in Human Resource Management, SZABIST (2014)
 - **Gender / ethnicity / veteran / disability (voluntary EEO questions):** "Prefer not to say" unless stated otherwise here: TODO
 - **How did you hear about us?** "LinkedIn / company careers page" unless a referral applies
 - **Willing to undergo background check:** TODO (usually yes)

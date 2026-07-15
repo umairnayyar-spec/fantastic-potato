@@ -37,13 +37,34 @@ who can hire. Input: a company name, a tracker row, or "top N in my pipeline".
 6. Update the tracker: status → `outreach-sent` only after the user actually
    sends; until then note "outreach drafted". Log the action.
 
-## Hard rules
+## Sending policy — AUTO-SEND AUTHORIZED (Umair, 2026-07-14)
 
-- **Drafts only.** Never send email or LinkedIn messages yourself. The user
-  reviews and sends everything.
-- One message per person — never mass-blast identical text; every draft must
-  contain at least one company-specific line that couldn't be pasted
-  elsewhere.
+Umair has explicitly authorized automatic sending of outreach **emails**,
+subject to every rail below. In environments that can send (e.g. Cowork
+driving the browser), send without per-message confirmation. In environments
+that can only create drafts (this Gmail connector), create the draft and
+report it.
+
+Rails — all mandatory, no exceptions:
+
+- **Email only.** Never auto-send LinkedIn messages or connection requests —
+  LinkedIn automation violates their ToS and risks account restriction.
+  LinkedIn copy is always handed to Umair to paste.
+- **Published addresses only.** Never send to a guessed/pattern-derived
+  address.
+- **One message per person, ever** (plus at most one follow-up after 7+ days
+  of silence). Never re-send, never blast.
+- **Genuinely personalized.** Every message must contain at least one
+  company-specific line that couldn't be pasted elsewhere; if the research
+  didn't produce one, don't send — flag instead.
+- **Max 10 outreach sends per day.**
+- **Log every send** in the tracker Activity log (date, recipient, company)
+  and report all sends in the session summary — Umair reviews after the
+  fact, not before.
+- **Only about roles in the tracker.** No speculative cold outreach to
+  companies Umair hasn't sourced or approved targeting.
+
+## Hard rules
 - Be honest about the candidate's background; the message must survive the
   contact reading the attached resume.
 - If no named contact can be found with confidence, say so and fall back to

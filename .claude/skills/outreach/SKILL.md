@@ -37,13 +37,14 @@ who can hire. Input: a company name, a tracker row, or "top N in my pipeline".
 6. Update the tracker: status → `outreach-sent` only after the user actually
    sends; until then note "outreach drafted". Log the action.
 
-## Sending policy — AUTO-SEND AUTHORIZED (Umair, 2026-07-14)
+## Sending policy — APPROVAL REQUIRED (Umair, 2026-07-15)
 
-Umair has explicitly authorized automatic sending of outreach **emails**,
-subject to every rail below. In environments that can send (e.g. Cowork
-driving the browser), send without per-message confirmation. In environments
-that can only create drafts (this Gmail connector), create the draft and
-report it.
+Outreach emails are prepared fully automatically — research, contact
+identification, personalized writing, Gmail draft creation — but **every
+send requires Umair's explicit approval first**. Batch approval is fine:
+present all pending messages together ("here are 4 outreach emails ready —
+approve all, or pick") and send the approved ones. Never send anything he
+hasn't seen in this or the current session.
 
 Rails — all mandatory, no exceptions:
 
@@ -58,9 +59,7 @@ Rails — all mandatory, no exceptions:
   company-specific line that couldn't be pasted elsewhere; if the research
   didn't produce one, don't send — flag instead.
 - **Max 10 outreach sends per day.**
-- **Log every send** in the tracker Activity log (date, recipient, company)
-  and report all sends in the session summary — Umair reviews after the
-  fact, not before.
+- **Log every send** in the tracker Activity log (date, recipient, company).
 - **Only about roles in the tracker.** No speculative cold outreach to
   companies Umair hasn't sourced or approved targeting.
 

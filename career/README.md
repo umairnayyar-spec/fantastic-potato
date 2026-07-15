@@ -39,10 +39,10 @@ hands you a batch of submit/send decisions at the end.
 
 ## Guardrails (built into every skill)
 
-- **You always click Submit on applications.** The agent prepares; you fire.
-- **Outreach emails auto-send** (authorized 2026-07-14) under strict rails:
-  published addresses only, personalized, one per person, ≤10/day, every
-  send logged and reported. LinkedIn messages are never auto-sent.
+- **You always click Submit on applications and approve outreach sends**
+  (batch approval fine). The agent prepares everything; you fire.
+- Outreach rails: published addresses only, personalized, one per person,
+  ≤10/day, every send logged. LinkedIn messages are never auto-sent.
 - **Nothing is ever fabricated** — resumes and messages only contain what's in
   your master resume.
 - **No LinkedIn automation** (it violates LinkedIn's ToS) — LinkedIn output is

@@ -63,8 +63,13 @@ angles, both true:
 - Partnered with leadership on restructuring of Product, Product Strategy,
   and Automotive functions, balancing efficiency, capability retention, and
   business continuity.
-- Co-led talent reviews, retention planning, performance cycles, and
-  compensation planning with functional leaders.
+- Ran performance management across the supported regions — a core pillar of
+  the role — including performance cycles, calibration, and
+  under-performance management.
+- Owned employee relations (ER) casework alongside performance management —
+  another core pillar of the role.
+- Co-led talent reviews, retention planning, and compensation planning with
+  functional leaders.
 - Worked with Epic's compensation team to benchmark Epic's job levels for
   the Pakistan territory.
 - Rolled out 360-degree performance feedback and leadership development

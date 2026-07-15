@@ -59,9 +59,10 @@ HRBP and org-design advisory for scaling companies across multiple time zones.
 
 **Senior HR Business Partner (APAC, Europe & Americas) — Epic Games · Jan 2024 – Dec 2025**
 Strategic partner to VPs and Directors across 450+ employees on three
-continents. Led a team of 4 HRBPs, the post-acquisition HR integration of
+continents. Ran performance management and employee relations across the
+regions; led a team of 4 HRBPs, the post-acquisition HR integration of
 Quixel (incl. Sweden), and restructurings of Product, Product Strategy and
-Automotive. Co-led talent reviews, comp planning and performance cycles.
+Automotive. Co-led talent reviews and comp planning.
 
 **Manager HR / Head of HR Pakistan — Quixel (Epic Games) · Sep 2019 – Dec 2023**
 Senior-most HR leader as Quixel scaled 63→238 employees through acquisition

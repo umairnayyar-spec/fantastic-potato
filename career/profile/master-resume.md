@@ -64,8 +64,8 @@ angles, both true:
   and Automotive functions, balancing efficiency, capability retention, and
   business continuity.
 - Ran performance management across the supported regions — a core pillar of
-  the role — including performance cycles, calibration, and
-  under-performance management.
+  the role — including performance cycles, calibration, under-performance
+  management, and performance improvement plans (PIPs) end-to-end.
 - Owned employee relations (ER) casework alongside performance management —
   another core pillar of the role.
 - Co-led talent reviews, retention planning, and compensation planning with

@@ -7,10 +7,14 @@ description: Generate optimized LinkedIn profile copy (headline, about, experien
 
 Produce ready-to-paste LinkedIn profile copy optimized for recruiter search.
 
-**Important:** this skill generates text only. Automating actions on LinkedIn
-(scraping while logged in, auto-editing the profile, auto-messaging) violates
-LinkedIn's terms of service — never do it, even if asked. The user pastes the
-copy in manually; it takes five minutes.
+**Important:** this skill primarily generates text. Scraping LinkedIn,
+auto-messaging, and auto-sending connection requests violate LinkedIn's ToS —
+never do those, even if asked. Profile *editing*: Umair has explicitly
+accepted (2026-07-15, after being informed of the ToS risk) that in his own
+logged-in, supervised browser session the agent may type prepared copy into
+the profile edit fields, provided **he clicks every Save himself**, one pass
+only, stopping immediately on any security challenge. Default remains
+paste-it-yourself whenever he's not present and supervising.
 
 ## Steps
 

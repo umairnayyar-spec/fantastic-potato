@@ -23,7 +23,21 @@
    the form that wasn't in `career/profile/profile.md` (add those answers to
    profile.md's "Standard application answers" too). Save the confirmation
    screenshot under `career/applications/motive-8620742002/` if available.
-3. **Commit and push everything** to branch `claude/job-search-agent-dz7jbc`
+3. **LinkedIn update — copilot mode.** Walk Umair through updating
+   https://www.linkedin.com/in/umairkhan99/ using
+   `career/linkedin/profile-copy.md`, one section at a time:
+   - Start with the headline: show him the 3 variants, let him pick (Variant
+     A is the recommended default), then give him the exact text to paste.
+   - Then About → each Experience blurb → Skills (pin the top 3) → Languages
+     → the Settings checklist (Open to Work in recruiters-only mode with the
+     5 target titles + locations listed in the file).
+   - **He does all the pasting/clicking on LinkedIn himself** — do NOT
+     drive the browser on linkedin.com or auto-edit anything there
+     (LinkedIn ToS; account-restriction risk). Your job is to feed him each
+     block, answer wording tweaks live, and tick sections off.
+   - Record any edits he makes back into `career/linkedin/profile-copy.md`
+     so the file matches what's live, and mark this item Done here.
+4. **Commit and push everything** to branch `claude/job-search-agent-dz7jbc`
    with a clear message.
 
 ## Done

@@ -40,7 +40,16 @@
      messaging, no connection requests — those stay banned).
    - Record any live edits back into `career/linkedin/profile-copy.md` so
      the file matches what's published, and mark this item Done here.
-4. **Commit and push everything** to branch `claude/job-search-agent-dz7jbc`
+4. **Run a real job search.** Run /find-jobs (per
+   `.claude/skills/find-jobs/SKILL.md`) across all four markets in
+   `career/profile/preferences.md`: Senior HRBP/Director, Head of People,
+   Head of OD, and HR Ops/Shared Services roles in GCC/MENA, Sweden/EU,
+   remote-international, and Pakistan. Score each against the rubric, add
+   every 7+ to `career/applications/tracker.md` as `sourced`, and list the
+   5–6 borderline ones for Umair. Verify each posting is live before adding.
+   This is the first real sourcing run — the pipeline currently has 0
+   sourced roles.
+5. **Commit and push everything** to branch `claude/job-search-agent-dz7jbc`
    with a clear message.
 
 ## Done

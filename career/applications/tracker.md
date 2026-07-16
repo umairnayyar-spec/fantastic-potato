@@ -11,6 +11,8 @@
 | 3 | STIXOR Technologies | Head of People & Culture (Islamabad) | via LinkedIn/Glassdoor "STIXOR Head of People Islamabad" | 8 (prov.) | sourced | 2026-07-16 sourced via search | find direct posting + verify + apply | Pakistan tech; strong title match. UNVERIFIED — needs live-check |
 | 4 | Remote.com | Senior People Business Partner | https://remote.com/openings/7735234003 | 8 (prov.) | sourced | 2026-07-16 sourced via search | verify live + tailor + apply | Remote-international; tech. UNVERIFIED — needs live-check |
 | 5 | Undisclosed FinTech (via recruiter) | HR Director — DIFC Dubai | search: "HR Director FinTech DIFC AED 80,000" | 9 (prov.) | sourced | 2026-07-16 sourced via search | identify hiring recruiter/firm + verify | GCC fintech, up to AED 80k/mo + equity — top salary/fit. Company undisclosed in listing; needs the source posting |
+| 6 | Undisclosed (via Glassdoor) | Director of People & Culture — Islamabad | search: "Director People Culture Islamabad" Glassdoor | 8 (prov.) | sourced | 2026-07-16 sourced via search | find direct posting + verify + apply | Pakistan; HR ops, labour-law, strategic workforce planning — strong title match. Company not named in snippet; needs live-check |
+| 7 | Reckitt | HR Business Partner — Pakistan | search: "Reckitt HR Business Partner Pakistan" careers | 7 (prov.) | sourced | 2026-07-16 sourced via search | verify live on Reckitt careers + tailor + apply | Global FMCG (acceptable industry); named employer. Confirm seniority + location on live posting |
 
 <!-- Example row:
 | 1 | Acme Travel | Head of Operations | https://... | 8/10 | applied | 2026-07-14 submitted via Greenhouse | follow up 2026-07-21 | recruiter: Jane Smith |
@@ -20,6 +22,14 @@
 
 <!-- Newest first. Every skill appends a dated line here when it acts. -->
 
+- 2026-07-16 — Second /find-jobs run (Pakistan-weighted + Qatar/Sweden).
+  Added rows 6–7 (Director of People & Culture Islamabad; Reckitt HRBP
+  Pakistan). Sweden/EU: no single verified posting, but named companies
+  actively hiring HRBPs to chase on their career pages — **Microsoft
+  (Stockholm), GlobalConnect, If, Dustin AB, SJ, Bonava, Insurello, Impact
+  Crowd Technology**. Qatar: only board landing pages (GulfTalent/Bayt HR
+  Director in Doha) — no named role yet. All still UNVERIFIED (WebFetch
+  blocked this session).
 - 2026-07-16 — First /find-jobs run. Searched all four markets (GCC/MENA,
   Sweden/EU, remote, Pakistan) via WebSearch. Added 4 named leads as
   `sourced` (rows 2–5). Scores provisional: WebFetch is blocked in this

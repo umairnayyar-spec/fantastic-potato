@@ -1,0 +1,3 @@
+# graphify machine-specific intermediates and local extraction cache
+graphify-out/.graphify_*
+graphify-out/cache/

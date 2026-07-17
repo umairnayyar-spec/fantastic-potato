@@ -1,160 +1,210 @@
 # 03 — Product Requirements Document (v1)
 
-**Product:** PrepChef v1 (MVP)
-**Status:** Draft for founder review
-**Positioning:** *PrepChef decides what's for dinner — so you don't have to.*
+**Product:** PrepChef v1 (MVP) · **Status:** Draft for founder review
+**Positioning:** *Your week of healthy eating, planned in five minutes.*
 
 ## 1. Problem statement
 
-Households that cook at home face a small but relentless daily burden: deciding what to
-eat, checking what it requires, and shopping for it. The decision recurs ~5 times a week,
-is often made under time pressure at the worst moment of the day, and failure modes are
-expensive (takeout) and wasteful (unused groceries). Existing meal planners generate plans
-but abandon the user the moment real life diverges from the plan, which it always does.
+People who want to eat healthier face a weekly compounding chore: set targets, find
+realistic recipes, plan a coherent week, shop for it, and cook it — repeatedly, under time
+pressure, with ingredients that are actually available and affordable where they live.
+Existing tools fail by recommending unrealistic or locally unavailable recipes, ignoring
+meal prep, generating waste, and abandoning the user the moment the plan meets reality.
 
 ## 2. Target users & personas
 
 | Persona | Description | Key need |
 |---|---|---|
-| **Overloaded parent** (primary) | 30–45, household of 3–5, cooks 4–6 nights/wk, kids with preferences | Plans everyone will eat; fast weeknight recipes; one shopping trip |
-| **Busy professional couple** | 25–40, household of 2, cooks 3–5 nights/wk | Variety, low decision effort, less takeout guilt |
-| **Solo simplifier** (secondary) | 22–35, household of 1 | Right-sized portions, leftovers handled intelligently |
+| **Gym-goer / recomposition** (primary) | 20–40, trains 3–6×/wk, wants protein targets hit without chicken-and-rice monotony | Macro-fitted plans, batch prep, taste |
+| **Busy professional** (primary) | 25–45, cooks to save money/health, decision-fatigued | ≤5-min planning, 1–2 prep sessions, easy repair |
+| **Local-market user (PK pack)** | Any of the above in Pakistan | Recipes from ingredients at their actual market, halal default, no oven assumed |
+| **Parent/household cook** (secondary) | Plans for 2–5 people | Scaled portions, budget bands, one shopping trip |
 
 ## 3. Goals & success metrics
 
 | Goal | Metric | v1 target |
 |---|---|---|
-| Households adopt the loop | Onboarding → first plan generated | ≥ 80% |
-| Plans get used in the real world | ≥ 1 grocery item checked off, per plan | ≥ 60% of plans |
-| Plans survive contact with reality | Planned meals marked *cooked* | ≥ 60% (retained households) |
-| **Retention (north star)** | Households generating a plan in week 4 | **≥ 35% of onboarded cohort** |
-| Learning loop works | 👍 rate on meals, week 4 vs. week 1 | +15% relative |
-| Unit economics | LLM inference cost per active household per month | ≤ $0.30 |
-| Willingness to pay (signal) | Free → paid conversion at day 30 | ≥ 4% |
+| Planning is genuinely fast | Median time: open app → plan + list ready (returning user) | **≤ 5 min** |
+| Onboarding completes | Signup → first plan generated | ≥ 75% |
+| Plans reach the kitchen | Plans with ≥1 prep session started or ≥3 meals marked eaten | ≥ 55% |
+| **Retention (north star)** | Users generating a plan in week 4 | **≥ 35% of cohort** |
+| Learning loop works | 👍 rate week 4 vs week 1 | +15% relative |
+| Localization is real | PK-pack plan quality parity: swap rate ≤ 1.3× US pack | tracked |
+| Unit economics | Inference cost / active user / month | ≤ $0.30 |
+| Willingness to pay | Free→paid conversion, day 30 | ≥ 4% |
 
-Guardrail metrics: plan-generation p95 latency ≤ 15s; hard-constraint violations
-(allergen/diet in a served plan) = **0** (this is a correctness requirement, not a metric
-to optimize).
+Guardrails: plan generation p95 ≤ 20s streamed; **zero** allergen/diet violations in
+served plans (correctness requirement, deploy-blocking); macro fit within ±10% of daily
+targets for ≥ 90% of generated days.
 
 ## 4. Functional requirements
 
-Priority: **P0** = MVP-blocking · **P1** = should ship in v1, cuttable · **P2** = v1.x.
+Priority: **P0** = MVP-blocking · **P1** = should ship, cuttable · **P2** = v1.x.
 
-### 4.1 Accounts & household (P0)
+### 4.1 Onboarding & profile (P0)
 
-- FR-1 Email/password + Google OAuth sign-up; email verification.
-- FR-2 A user belongs to exactly one **household** in v1; household is the unit of
-  planning, preferences, and billing.
-- FR-3 Household setup: # adults, # kids; per-household dietary constraints
-  (vegetarian, vegan, pescatarian, halal, kosher-style, gluten-free, dairy-free,
-  nut-allergy, shellfish-allergy, custom-avoid list). **Constraints are hard filters** —
-  a recipe violating any household constraint must never be selectable, swappable, or
-  suggested, including by the AI repair path.
-- FR-4 Hard dislikes (ingredient-level, e.g. "no mushrooms") — also hard filters.
-- FR-5 Time budget (weeknight max: 20/30/45/60+ min) and skill level (beginner /
-  comfortable / confident) — soft preferences.
-- FR-6 Taste bootstrap: swipe/tap through 8 candidate recipes ("would you eat this?");
-  results seed the preference profile.
-- FR-7 (P1) Invite a second member into the household (shared plan & list, single set of
-  household preferences in v1).
+- FR-1 Email/password + Google OAuth; email verification.
+- FR-2 Profile inputs: age, height, weight, sex, goal (lose/maintain/gain/health),
+  activity level (5 bands), dietary preference (none/vegetarian/vegan/pescatarian/halal/
+  kosher-style/gluten-free/dairy-free), allergies (structured list + custom), liked and
+  disliked foods (chip-pick from top ~60 ingredients, per locale), budget band (3 levels),
+  household size (adults/kids), cooking skill (3 levels), weekly cooking-time budget,
+  country → locale pack, equipment booleans (oven/blender/microwave), units
+  (defaulted by locale, overridable).
+- FR-3 Allergies and dietary preference are **hard filters** at every surface — generate,
+  swap, shuffle, assistant, repair. Enforced by deterministic code, never left to the LLM.
+- FR-4 Onboarding completable in ≤ 4 minutes; every step after account creation
+  skippable-with-defaults except allergies (explicit "none" required).
+- FR-5 All profile fields editable later in Settings; changes affect the *next*
+  generation, with an offer to regenerate the current week.
 
-### 4.2 Plan generation (P0)
+### 4.2 Nutrition targets (P0)
 
-- FR-8 Generate a weekly dinner plan of N meals (user picks 3–6, default 4) assigned to
-  user-chosen weeknights.
-- FR-9 Generation must respect: hard filters (constraints/dislikes), time budget per
-  night, taste profile, **ingredient-overlap optimization** (shared perishables across the
-  week), variety (no recipe repeated within 21 days unless 👍-rated and user opts into
-  favorites repetition), seasonal tag bias.
-- FR-10 If a recipe yields ≥ 2 servings above household size, offer an automatic
-  "Leftovers" entry the following night (user can decline).
-- FR-11 Per-meal actions on the draft plan: **Swap** (show 3 alternatives), **Remove**,
-  **Adjust** via one-line free text ("something lighter", "use the salmon idea but
-  faster"). Whole-plan regenerate ≤ 1×/week (free tier) to bound cost.
-- FR-12 Plan generation p95 ≤ 15s with a streaming/skeleton UI; swaps p95 ≤ 4s.
-- FR-13 Every generated plan is reproducible: persist recipe IDs, scaling factors, and the
-  generation context (model, prompt version, candidate set) for debugging and evals.
+- FR-6 Compute BMR (Mifflin-St Jeor), TDEE (activity multiplier), calorie target
+  (goal-adjusted: −15–20% cut / maintenance / +10% surplus), protein (1.6–2.2 g/kg by
+  goal), fat (≥ 20% kcal), carbs (remainder). Pure functions, unit-tested, never the LLM.
+- FR-7 Targets shown on one simple screen (number + one-line meaning each); editable
+  within clinically safe bounds (floors: 1,200/1,500 kcal; warnings outside evidence-based
+  ranges). Not medical advice — disclaimer required.
+- FR-8 No food logging. The dashboard shows **planned** intake vs. target ("adherence
+  view"), never a "remaining calories" meter.
 
-### 4.3 Grocery list (P0)
+### 4.3 Weekly plan generation (P0)
 
-- FR-14 Auto-build one consolidated list from the active plan: aggregate identical
-  canonical ingredients across recipes, normalize units (2 tbsp + ¼ cup → single line),
-  scale to household size, subtract pantry staples.
-- FR-15 Group by store category (produce, meat/fish, dairy, pantry, frozen, other);
-  check-off persists instantly and works offline (PWA cache + sync).
-- FR-16 Manual items (free text) can be added; they persist week to week ("running low"
-  behavior is out of scope).
-- FR-17 Editing the plan (swap/remove/repair) updates the list **coherently**: purchased
-  (checked) items are never silently removed — they move to a "you already have"
-  section if no longer needed.
-- FR-18 (P1) Read-only shareable list link (tokenized URL, no login required to view/check).
+- FR-9 User selects: prep model (1 or 2 sessions/week + which days), days to cover
+  (default Mon–Sun), lunches/dinners needed (accounting for known eating-out days).
+- FR-10 Generator selects batch recipes from the curated corpus satisfying, in priority
+  order: (1) hard filters; (2) locale availability ≥ threshold; (3) daily macro fit ±10%
+  when portioned; (4) time budget & skill & equipment; (5) budget band; (6) ingredient
+  overlap (shared perishables across batches); (7) taste profile; (8) variety vs. last 3
+  weeks; (9) seasonal bias.
+- FR-11 Breakfasts: rotation of 2–3 user-picked templates (macro-counted). Snack
+  suggestions computed to fill residual macros. Both count toward daily totals.
+- FR-12 Each meal displays: kcal, protein, carbs, fat, prep time, cook time, difficulty,
+  cost band. Each day displays totals vs. targets.
+- FR-13 Plan entries support types: batch-portion, fresh-cook, breakfast-template,
+  leftovers, eating-out, empty. Eating-out days reduce coverage, never generate guilt copy.
+- FR-14 p95 ≤ 20s with streaming skeleton; persisted with full generation context
+  (model, prompt version, candidate set, scores) for reproducibility and evals.
 
-### 4.4 Cook mode & feedback (P0)
+### 4.4 Plan flexibility (P0)
 
-- FR-19 "Tonight" surface: today's planned meal one tap from home; ingredients (scaled),
-  steps, estimated time. Screen wake-lock during cook mode.
-- FR-20 Post-meal feedback: exactly three options — **Cooked 👍 / Cooked 👎 / Skipped** —
-  available from tonight's view and from the week view for past nights. Optional one-line
-  note on 👎 (fed to the taste profile).
-- FR-21 Feedback mutates the household taste profile (recipe-, ingredient-, and
-  cuisine-level signals) and is reflected in the next generation.
+- FR-15 Replace meal (3 filtered alternatives) · swap meals between days (drag or menu) ·
+  lock meals (survive shuffle/regenerate) · shuffle unlocked · regenerate single meal with
+  optional one-line instruction. All obey FR-3 and update macros/list live.
+- FR-16 Whole-week regenerate: ≤ 1×/week free tier, ≤ 3× paid (cost control).
+- FR-17 Swap/regenerate p95 ≤ 4s.
 
-### 4.5 Plan repair (P0) — *hero feature*
+### 4.5 AI assistant — constrained command layer (P0)
 
-- FR-22 One-tap **"Didn't cook it"** on any current-week meal → PrepChef reflows the
-  remaining week: prioritizes already-purchased perishables, rolls at most one meal
-  forward, updates the list per FR-17. Completes ≤ 6s p95.
-- FR-23 Free-text repair on the week ("we're out Thursday", "have half a roast chicken
-  left") → AI restructures remaining nights under the same hard filters. The response is a
-  *proposed diff* (before/after week view) the user confirms — never silent mutation.
-- FR-24 Tone requirement: repair flows are guilt-free by design. No streak-breaking
-  language, no red warnings for skipping. (This is a product requirement, not a style nit.)
+- FR-18 A command bar on the plan accepts free text; intents parse to structured
+  operations: replace / exclude-ingredient / time-constrain / macro-constrain / repair /
+  prep-shift. Vision examples are the acceptance tests ("I only have eggs", "Replace
+  Thursday dinner", "I don't want chicken this week", "I only have 20 minutes", "meals
+  under 500 calories").
+- FR-19 Every assistant result is a **proposed diff** (before/after) requiring
+  confirmation. Unparseable requests get an honest "here's what I can do" menu, never a
+  hallucinated action. Out-of-scope requests (nutrition advice, arbitrary chat) are
+  declined with the menu.
+- FR-20 Rate-limited per tier; p95 ≤ 6s.
 
-### 4.6 Weekly recap (P1)
+### 4.6 Grocery list (P0)
 
-- FR-25 End-of-week summary: meals cooked, estimated savings vs. a delivery-cost benchmark
-  (labeled "estimate"), ingredient utilization ("everything you bought got used" when
-  overlap optimization achieved it), next week CTA. Delivered in-app + email.
+- FR-21 Consolidated from the active plan: canonical-ingredient aggregation, unit
+  normalization, household scaling, pantry-staples subtraction (editable static staples
+  list — no inventory).
+- FR-22 Grouped: produce / protein / dairy / pantry / frozen / spices / other. Locale
+  ingredient names. Check-off persists offline (PWA cache + sync).
+- FR-23 Manual items; print stylesheet (P1); tokenized read-only share link (P1).
+- FR-24 Plan edits update the list coherently; checked (purchased) items never silently
+  vanish — they move to "already bought" if de-planned.
 
-### 4.7 Recipe corpus (P0 — content workstream, not code)
+### 4.7 Prep schedule (P0)
 
-- FR-26 300–500 rights-clean recipes; every ingredient row references a **canonical
-  ingredient** with quantity, unit, and optional prep note; recipes tagged: cuisine, diet
-  flags (computed from ingredients *and* human-verified), active/total time, difficulty,
-  kid-friendly, season; original or rewritten instructions; owned/stock imagery.
-- FR-27 Diet-flag verification is a human gate: no recipe enters the servable corpus
-  until its allergen/diet flags are reviewed. (Backstops FR-3's zero-violation rule.)
+- FR-25 Per prep session, derive an ordered task plan across its recipes (proteins →
+  grains/staples → sauces → chop → portion → store), with per-task and total estimated
+  time, parallelization hints ("while rice cooks…"), and storage instructions
+  (container, fridge/freezer, keeps-until).
+- FR-26 Prep mode: step-through UI, wake-lock, large type. "Session done" marks batches
+  available; "didn't prep" triggers repair (FR-29).
 
-### 4.8 Billing (P1)
+### 4.8 Recipe pages (P0)
 
-- FR-28 Free tier: 1 plan/week, 3 swaps/week, repair included (repair is the habit-former;
-  never paywall it). Paid ($8/mo, Stripe): unlimited swaps/adjustments, recap history,
-  favorites. 14-day full-featured trial, no card required.
+- FR-27 Ingredients (scaled), instructions, nutrition/serving, times, difficulty, storage
+  + freezer suitability + reheating notes, curated substitutions, cost band. Rights-clean
+  content and imagery only (see FR-34).
+
+### 4.9 Feedback & learning (P0)
+
+- FR-28 Per-meal: **Ate it 👍 / Ate it 👎 / Skipped** (optional one-line note on 👎).
+  Signals update the preference profile (recipe, ingredient, cuisine levels) and
+  measurably shift the next generation.
+
+### 4.10 Plan repair (P0 — hero feature)
+
+- FR-29 One-tap "didn't happen" on a meal or an entire prep session → reflow the
+  remaining week prioritizing already-purchased ingredients; at most one meal rolls
+  forward; list updates per FR-24. p95 ≤ 6s.
+- FR-30 Free-text repair via the assistant ("prep ran out Thursday", "I only have eggs")
+  → proposed diff under hard filters.
+- FR-31 Tone: judgment-free. No streaks broken, no red states, no "you missed" copy.
+
+### 4.11 Dashboard — "Today" (P0)
+
+- FR-32 Today's meals (tap → recipe), planned-vs-target macro adherence for today,
+  shopping progress, next prep session countdown. No weight tracking (P2: optional weekly
+  weigh-in re-tuning TDEE).
+
+### 4.12 Weekly recap (P1)
+
+- FR-33 Meals eaten, prep sessions completed, protein adherence, ingredient utilization,
+  estimated eating-out savings (labeled estimate; locale-benchmark methodology agreed
+  before ship). In-app + email; guilt-free framing.
+
+### 4.13 Content & localization (P0 — content workstream)
+
+- FR-34 ~350 rights-clean recipes, batch-friendly bias; every ingredient row references a
+  canonical ingredient (qty, unit, prep note); nutrition computed per serving from
+  ingredient data and spot-verified; tags: cuisine, meal role, diet flags
+  (human-verified), times, difficulty, equipment, season, freezer-safe.
+- FR-35 Locale packs (PK, US): per-ingredient availability + local name + cost band;
+  per-recipe availability score; pack defaults (halal filter on for PK, units, staples
+  list, eating-out cost benchmark). A recipe is servable in a locale only above the
+  availability threshold.
+- FR-36 Diet/allergen flags are human-verified before a recipe becomes servable
+  (backstops FR-3's zero-violation rule).
+
+### 4.14 Billing (P1)
+
+- FR-37 Free: full loop, 3 swaps + 1 regenerate/week. Paid via Stripe (~$8/mo US; PPP
+  pricing for PK decided in M5): unlimited flexibility, recap history, favorites. 14-day
+  full trial, no card. Repair and feedback never paywalled.
 
 ## 5. Non-functional requirements
 
-- **NFR-1 Correctness:** zero hard-constraint violations in served plans (automated eval
-  suite gates every prompt/model/corpus change; violations block deploy).
-- **NFR-2 Cost:** inference ≤ $0.30 per active household/month at v1 usage; per-household
-  daily LLM budget enforced server-side.
-- **NFR-3 Performance:** plan p95 ≤ 15s (streamed), swap ≤ 4s, repair ≤ 6s, all other
-  interactions ≤ 300ms server time.
-- **NFR-4 Availability:** 99.5% for the app; grocery list check-off must degrade to
-  offline (local cache + background sync) — a store aisle has bad reception.
-- **NFR-5 Privacy/security:** dietary and health-adjacent data is sensitive — encrypted at
-  rest, never sold, never used in prompts for *other* households; GDPR-style
-  export/delete from day one (cheap now, painful later).
-- **NFR-6 Auditability:** every AI generation persisted with prompt version + inputs +
-  outputs (see FR-13) for eval regression and support.
-- **NFR-7 Accessibility:** WCAG 2.1 AA on the core loop; cook mode readable at arm's
-  length (large type mode).
+- **NFR-1 Correctness:** zero hard-filter violations; golden-household eval suite gates
+  every prompt/model/corpus change in CI.
+- **NFR-2 Nutrition integrity:** all nutrition math deterministic and unit-tested; LLM
+  output never contains numbers shown to users (it selects; code computes).
+- **NFR-3 Cost:** ≤ $0.30 inference/active user/month; server-side per-user daily budget.
+- **NFR-4 Performance:** generate ≤ 20s p95 streamed; swap ≤ 4s; repair/assistant ≤ 6s;
+  other interactions ≤ 300ms server.
+- **NFR-5 Offline:** grocery list and today's recipes readable/checkable offline (store
+  aisles and kitchens have bad reception).
+- **NFR-6 Privacy:** health-adjacent data (weight, goals, allergies) encrypted at rest,
+  never used across households, never sold; export + delete self-serve from day one;
+  Supabase RLS on every table.
+- **NFR-7 Auditability:** every generation logged (inputs, prompt version, output,
+  tokens, latency).
+- **NFR-8 Accessibility & design:** WCAG 2.1 AA; light + dark mode; i18n-ready strings
+  (English-only at launch).
+- **NFR-9 Availability:** 99.5%; degraded mode = read-only plan + list if generation is
+  down.
 
-## 6. Open questions (need founder decision, don't block build start)
+## 6. Open questions (founder decisions; none block M0–M1)
 
-1. Price point $6 vs $8 vs $10/mo — test at launch, build nothing price-specific.
-2. Kids' preferences: v1 models household-level dislikes only; per-member profiles are
-   v1.x — confirm acceptable for launch marketing.
-3. Recipe corpus sourcing: commission (est. $30–60/recipe) vs. license a structured
-   dataset — needs a budget call within Milestone 1 (see doc 08).
-4. Brand voice: recap "savings estimate" methodology must be defensible — agree the
-   benchmark (e.g., regional average delivery cost per meal) before recap ships.
+1. PK pricing: PPP-adjusted subscription vs. free-longer strategy for the PK pack.
+2. Recipe corpus sourcing: commission vs. license structured data — budget call in M1.
+3. Which locale leads the beta (founder distribution advantage likely PK — confirm).
+4. Recap savings methodology per locale (delivery benchmark source).
+5. Working title "PrepChef" — trademark screen before spend on brand assets.

@@ -154,3 +154,78 @@ plan *companion*, and (c) promising outcomes (exact savings, waste tracking) tha
 data we won't have in v1. Doc 02 scopes an MVP that tests the one hypothesis that matters:
 **will a household let PrepChef decide dinner for them for four consecutive weeks?**
 Everything else is downstream of that answer.
+
+---
+
+## Addendum — critique of the full (expanded) vision
+
+The full vision doc arrived after the critique above was written. It resolves several of my
+original complaints — it names the meal-prep cooking model explicitly, makes ingredient
+reuse a stated principle, and (unusually and correctly) treats localization as a first-class
+strength rather than an afterthought. The Pakistan example is the sharpest product insight
+in the doc: nobody serves that user well today, and "locally realistic recipes" is a real
+moat because it requires curated data, not a bigger model. Keep that.
+
+Now the pushback:
+
+### A1. Breakfast + lunch + dinner + snack × 7 days is 28+ generated meals/week
+
+That's 4–7× the content surface, plan complexity, and inference cost of the core problem,
+and it drags plan quality down (28 good slot-fills is much harder than 10). The vision's own
+cooking model — "cook once or twice for the week" — points at the fix: **generate the week
+as 2 batch-cook sessions that yield the week's lunches and dinners**, treat breakfast as a
+user-picked rotation of 3–4 simple templates (macro-counted, near-zero variety demand in
+real behavior — people eat the same breakfast), and offer snacks as a static suggestion
+list that fills remaining macros. Full daily totals still work; generation stays tractable.
+
+### A2. The tracker trap
+
+Macro targets, "remaining calories," and weight tracking pull the product toward
+MyFitnessPal — a *tracking* product with brutal engagement demands (log every bite or the
+numbers lie). PrepChef's promise is the opposite: *follow the plan and the numbers take
+care of themselves*. So: compute targets, show per-meal and per-day macros on the plan,
+show adherence ("you followed the plan ≈ you hit your protein") — but **no food logging,
+no calorie-remaining meter, and weight tracking deferred** to v1.x as an optional weekly
+weigh-in. If users must log off-plan eating for the dashboard to be honest, we've built
+the wrong product.
+
+### A3. "Localization" must mean locale packs, not a country dropdown
+
+Real localization = per-locale ingredient availability, naming (coriander/cilantro/دھنیا),
+cost bands, units, and religiously appropriate defaults. That is curated data work per
+locale. Promising it for every country in a dropdown guarantees it's fake (the LLM will
+happily generate "Pakistani" recipes with ingredients unavailable in Lahore). v1 ships
+**two curated locale packs — Pakistan and US** — done properly: every recipe in the corpus
+scored for availability per locale, halal-by-default in the PK pack, metric/imperial
+handled. This is also the honest test of whether localization is the moat the vision
+claims.
+
+### A4. Estimated costs: bands, not numbers
+
+"Estimated cost" per meal and "average grocery prices" imply price data we won't have.
+Locale-relative **cost bands** (₹/₹₹/₹₹₹, $/$$/$$$) per recipe and a budget-band preference
+are deliverable and useful; dollar-precise estimates are fabrications wearing a UI. Real
+prices are a v2 partnership problem.
+
+### A5. The AI assistant needs walls
+
+"Ask anything" chat is an unbounded surface: unbounded inference cost, unbounded failure
+modes, and it competes with ChatGPT, which we will lose. Every example in the vision
+("replace Thursday dinner", "no chicken this week", "only 20 minutes", "under 500
+calories", "I only have eggs") is a **plan operation with parameters**. Build it as intent
+parsing → structured operations (swap/filter/regenerate/repair) → the same validated
+pipeline, with a visible menu of what it can do. Cheaper, testable, and it can't promise
+what it can't deliver.
+
+### A6. Kitchen equipment: three booleans, not an inventory
+
+Equipment lists are another abandonment-prone inventory. Ask what changes recipe
+eligibility — oven? blender? microwave? — and stop. (In the PK locale pack, oven-free
+matters a lot; that's a locale-pack default, not a 20-item checklist.)
+
+### A7. What the expanded vision still misses (carried forward from the original critique)
+
+Plan **repair** and the **cooked/skipped feedback loop** appear nowhere in the vision, and
+they remain the retention mechanism this category always lacks. "Easily swap or regenerate"
+is pre-week flexibility; *mid-week reality* (prep session skipped, batch ran out, ate out
+twice) is where users churn. Both stay in the MVP as previously argued.

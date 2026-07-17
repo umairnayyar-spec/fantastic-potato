@@ -1,86 +1,111 @@
-# 02 — MVP Scope & v1 Exclusions
+# 02 — MVP Scope & v1 Exclusions (reconciled with full vision)
 
 ## The hypothesis the MVP must test
 
-> A household will let PrepChef decide dinner for them, follow the plan well enough to shop
-> from its grocery list, and come back for a new plan **four weeks in a row**.
+> A user will let PrepChef plan their week — targets, meals, groceries, and prep schedule —
+> actually execute the prep session and shop from the list, and come back for a new plan
+> **four weeks in a row**.
 
-Success metric: **week-4 planning retention ≥ 35%** of households that completed onboarding
-(cohort basis), and ≥ 60% of planned meals marked "cooked" among retained households.
-If we can't hit that, no amount of price data, nutrition tracking, or native apps will save
-the product — and if we can, all of those become worth building.
+Success bar: **week-4 planning retention ≥ 35%** of onboarded users, **≥ 60% of plans with
+a completed prep session or ≥ 60% of planned meals marked eaten**, and 👍 rate improving
+week-over-week. The vision's own success criterion — *under five minutes from opening the
+app to a complete week* — is a hard product requirement, measured in analytics.
 
 ## MVP: the core loop
 
-One loop, executed end-to-end, nothing else:
-
 ```
-Onboard (≤3 min)
-   → Generate weekly dinner plan (3–6 meals, household-aware)
-   → Review & adjust (swap / remove / "make it faster")
-   → Consolidated grocery list (check-off while shopping)
-   → Cook nights: today's recipe front and center
-   → One-tap feedback: Cooked 👍 / Cooked 👎 / Skipped
-   → Mid-week repair: "didn't cook it" reflows the week
-   → Weekly recap (proof of value) → next week's plan is measurably better
+Onboard (≤ 4 min)
+   → Targets computed (calories + macros, shown simply)
+   → Weekly plan generated (2 batch-cook sessions → week of lunches + dinners;
+     breakfast rotation; snack suggestions; per-meal macros; locale-aware)
+   → Review & adjust (swap / lock / shuffle / regenerate one meal / assistant commands)
+   → Grocery list (consolidated, categorized, check-off, print, share)
+   → Prep day: guided prep schedule (task sequence + est. time)
+   → Through the week: today's meals surface; one-tap ate-it / skipped
+   → Mid-week repair ("prep ran out", "ate out twice") reflows the week
+   → Weekly recap → next week's plan is measurably better
 ```
 
 ### In scope (v1)
 
-1. **Onboarding** — household size (adults/kids), dietary constraints (vegetarian, halal,
-   allergies, etc.), hard dislikes, weeknight time budget, cooking skill, cuisine
-   preferences via an 8-recipe "would you eat this?" swipe. Email/password + Google OAuth.
-2. **Plan generation** — AI selects and sequences 3–6 dinners from the curated recipe
-   corpus, optimizing for: household constraints (hard filters), taste profile (learned),
-   time budget per night, **ingredient overlap across the week** (structural waste/cost
-   reduction), and variety vs. recent weeks. One auto "leftovers night" slot when a recipe
-   yields extra servings.
-3. **Plan adjustment** — per-meal: swap (3 alternatives offered), remove, regenerate with a
-   one-line instruction ("something lighter"). Whole-plan regenerate once per week.
-4. **Grocery list** — auto-consolidated across the week's recipes: unit-normalized,
-   aggregated by ingredient, grouped by store aisle/category, minus pantry staples;
-   check-off UI that works one-handed in a store; add manual items; shareable read-only
-   link (so a partner can shop).
-5. **Pantry staples list** — a default assumed-staples checklist, editable once in
-   settings. No inventory tracking.
-6. **Cook mode** — today's recipe: ingredients, scaled quantities, steps, servings. Plain,
-   readable, screen-stays-awake.
-7. **Feedback loop** — three-button per-meal feedback; drives the household preference
-   profile used in generation.
-8. **Plan repair** — "didn't cook it" one-tap reflow; free-text repair ("we're eating out
-   Thursday") handled by the AI; grocery list updates coherently.
-9. **Weekly recap** — meals cooked, streak, rough savings vs. delivery/takeout benchmark
-   (clearly labeled as an estimate), ingredients fully used.
-10. **Recipe corpus** — 300–500 curated, tested, rights-clean recipes with fully
-    structured ingredients (canonical ingredient IDs, quantities, units, prep notes),
-    tagged (cuisine, diet flags, time, difficulty, kid-friendliness).
-11. **Platform** — mobile-first responsive web app (PWA: installable, grocery list cached
-    offline). No native apps.
-12. **Billing** — freemium: free = 1 active plan/week with limited swaps; paid (~$8/mo)
-    = unlimited swaps/repairs + recap history. Stripe. (Charging from early on is itself a
-    validation signal, but the free tier must let a household complete the full loop.)
+1. **Onboarding** (the vision's list, trimmed to what changes output): age, height,
+   weight, sex, goal, activity level → targets; dietary preference + allergies (hard
+   filters); liked/disliked foods (quick-pick chips, not free-form essays); budget band;
+   household size; cooking skill; weekly cook-time budget; **country → locale pack**;
+   equipment as three booleans (oven / blender / microwave). Google OAuth + email.
+2. **Nutrition targets** — Mifflin-St Jeor BMR → TDEE → calorie + protein/carb/fat
+   targets, deterministic code (never the LLM). Simple explanation screen; targets
+   editable within safe bounds. **No food logging anywhere.**
+3. **Plan generation** — meal-prep-first: user picks 1 or 2 prep sessions (e.g., Sunday +
+   Wednesday); PrepChef selects batch recipes from the curated corpus that (a) pass hard
+   filters, (b) hit daily macro targets within ±10% when portioned across the week,
+   (c) maximize ingredient overlap, (d) respect budget band, locale availability,
+   equipment, skill, and time budget, (e) vary against recent weeks. Breakfasts: user
+   picks 2–3 from a macro-fitted template rotation. Snacks: suggested list to fill macro
+   gaps. Each meal shows calories/protein/carbs/fat, prep + cook time, difficulty, and
+   locale cost band.
+4. **Plan flexibility** — per the vision, all five verbs: replace a meal (3 alternatives),
+   swap between days, lock favorites, shuffle unlocked meals, regenerate a single meal.
+   Whole-week regenerate limited (cost control).
+5. **AI assistant (constrained)** — a command bar over structured operations. The vision's
+   examples all map: "replace Thursday dinner" → swap op; "no chicken this week" →
+   exclusion + regenerate; "only 20 minutes" → time-filtered swap; "under 500 calories" →
+   macro-filtered swap; "I only have eggs" → repair op. Every result is a proposed diff
+   the user confirms. No open-ended chat.
+6. **Grocery list** — consolidated across the plan, unit-normalized, scaled, minus pantry
+   staples; grouped by category (produce/protein/dairy/pantry/frozen/spices); check-off
+   (offline-capable PWA); manual items; print stylesheet; shareable read-only link.
+   (Export-to-CSV deferred — print + share covers the real use.)
+7. **Prep schedule** — generated task plan per prep session (proteins → grains → sauces →
+   chop → portion → store), interleaved across the session's recipes, with estimated total
+   time and storage instructions per batch. This is a *derived view* of the plan, not a
+   separately generated artifact — keeps it consistent under swaps/repairs.
+8. **Recipe pages** — ingredients (scaled), instructions, nutrition, times, difficulty,
+   storage/freezer/reheat notes, substitutions (from curated substitution data), cost
+   band. Reached from the plan only; no browsing/search surface in v1.
+9. **Feedback loop** — per-meal: Ate it 👍 / Ate it 👎 / Skipped. Feeds the preference
+   profile used in next generation.
+10. **Plan repair** — one-tap "didn't happen" on a prep session or meal; free-text repair
+    via the assistant. Reflow prioritizes already-bought ingredients; grocery list updates
+    coherently; guilt-free tone mandated.
+11. **Dashboard = "Today"** — today's meals, plan-adherence view of macros (planned vs.
+    target — *not* logged), shopping progress, next prep session reminder. No weight
+    tracking in v1 (v1.x: optional weekly weigh-in that re-tunes TDEE).
+12. **Weekly recap** — meals eaten, prep sessions done, protein adherence, ingredient
+    utilization, estimated savings vs. eating out (labeled estimate). Email + in-app.
+13. **Localization** — two curated locale packs at launch: **Pakistan** (halal default,
+    metric, local ingredient names, oven-optional bias, ₨ cost bands) and **United
+    States** (imperial default, $ cost bands). Corpus: ~350 recipes total, every recipe
+    availability-scored per locale (~250 servable per locale, overlapping).
+14. **Design system** — Next.js + Tailwind + shadcn/ui, mobile-first, light + dark mode,
+    Apple/Linear/Notion-calm aesthetic. (Cheap to do from day one with this stack;
+    expensive to retrofit.)
+15. **Billing** — freemium + Stripe (~$8/mo or PPP-adjusted regional pricing given the PK
+    locale; decide in M5). Free tier completes the full loop with limited swaps. 14-day
+    full trial. Repair and feedback are never paywalled.
 
-### Explicitly OUT of v1 (and why)
+### Explicitly OUT of v1
 
 | Excluded | Why |
 |---|---|
-| Pantry/fridge inventory tracking | Highest-abandonment feature in the category; structural overlap optimization captures most of the value with zero user labor |
-| Real grocery price data / store APIs | No viable general API; partnerships are a v2 job. v1 shows *estimated* savings only |
-| Grocery delivery integration | Depends on partnerships; adds checkout complexity; not needed to test the hypothesis |
-| Breakfast, lunch, snacks, desserts | Dinner is the stress point; other meals triple content needs and dilute plan quality |
-| Nutrition/macro tracking & goals | Different product muscle (tracking vs. deciding); "healthier by default" tagging suffices in v1 |
-| AI-generated novel recipes | Untested recipes are a trust grenade; AI selects/adapts from the tested corpus only |
-| Social features (sharing plans, community, comments) | Zero contribution to the core hypothesis |
-| Native iOS/Android apps | 2–3× build cost pre-validation; PWA covers the loop. Cost: no reliable push — mitigate with email + calendar-file nudges, accept the gap |
-| Meal-kit style portioned delivery | Entirely different (logistics) business |
-| Multiple simultaneous plans / meal-prep-only mode | Variants of the loop; add after the loop retains |
-| Wearable/health-platform integrations | v3 territory |
-| Localization / multi-currency / metric-imperial switching | Single locale at launch |
-| In-app chat with a general cooking assistant | Scope trap: unbounded surface, unbounded inference cost. The AI appears only inside structured actions (generate, swap, repair) |
+| Food logging / calorie-remaining meter | Tracker trap (critique A2). Adherence view instead |
+| Weight tracking & progress charts | v1.x optional weigh-in; charts imply a tracking product |
+| Full breakfast/snack generation | Rotation templates + suggestions cover it at 1/5 the complexity (A1) |
+| Real grocery prices, store integration, delivery | No data source; cost bands in v1; partnerships are v2 |
+| Pantry/fridge inventory | Highest-abandonment feature in category; overlap optimization instead |
+| "Any country" localization | Fake without curated data (A3); two real locale packs instead |
+| Open-ended AI chat | Unbounded cost/failure surface (A5); command layer instead |
+| AI-generated novel recipes | Untested recipes destroy trust; AI selects/adapts from tested corpus |
+| Kitchen equipment inventory beyond 3 booleans | A6 |
+| Per-household-member profiles | Household-level prefs in v1; member profiles v1.x |
+| Native apps / push notifications | PWA + email until the loop retains |
+| Social/community features, recipe import, meal photos | No contribution to the hypothesis |
+| CSV/third-party grocery export | Print + share link covers actual behavior |
+| Urdu (or any) translation | English UI across both locale packs at launch; i18n-ready strings from day one |
 
-### MVP cut-line discipline
+### Cut-line discipline
 
-If timeline pressure forces cuts *within* the MVP, cut in this order (last = most
-protected): weekly recap → billing → shareable list link → swipe onboarding (replace with
-checkboxes) → leftovers slot. **Never cut:** plan repair, feedback buttons, grocery-list
-consolidation. Those three are the product.
+If forced to cut within the MVP, cut in order: recap → billing → share link → print
+stylesheet → second locale pack (keep PK if the founder's distribution advantage is there,
+else US). **Never cut:** prep schedule, repair, feedback buttons, grocery consolidation,
+macro-fitted generation — that set *is* the product.

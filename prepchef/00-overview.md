@@ -17,25 +17,32 @@ implementation roadmap.
 | [07-technical-architecture.md](07-technical-architecture.md) | System design, AI pipeline, infra, cost controls |
 | [08-roadmap.md](08-roadmap.md) | Milestone-based implementation roadmap |
 
-## Working assumptions (important)
+## Vision basis
 
-The kickoff prompt contained a placeholder — `[PASTE THE FULL PRODUCT VISION HERE]` — that was
-never filled in, and no vision document exists in this repository. Everything below is built
-from the one-paragraph summary that *was* provided:
+Docs 01–04 were first drafted against a one-paragraph vision; the founder subsequently
+provided the **full product vision** (health/macro targets, all meals, meal prep as the
+cooking model, localization as a headline strength, AI assistant, Next.js + Supabase
+stack). The document set has been reconciled with that fuller vision:
 
-> PrepChef is an AI-powered weekly meal planning platform that helps users eat healthier,
-> save money, reduce food waste, and remove the daily stress of deciding what to eat.
+- **01-product-critique.md** keeps the original critique and adds an addendum critiquing
+  the expanded vision specifically.
+- **02–08** are written against the *reconciled* scope: the founder's vision, minus the
+  pieces argued out in the critique, plus the retention mechanics (plan repair, feedback
+  loop) the original critique established.
 
-Assumptions made in the absence of the full vision doc:
+Key reconciled positions (details and reasoning in docs 01–02):
 
-1. **Target user:** busy adults/households cooking dinner at home 3–6 nights a week, not
-   professional chefs and not macro-tracking athletes.
-2. **Business model:** consumer subscription (freemium), with grocery affiliate revenue as a
-   later option.
-3. **Initial market:** English-speaking, single currency/measurement locale at launch.
-4. **Team:** two founders (one technical), no dedicated content or ops staff at launch.
-5. **Platform:** mobile-first responsive web app first; native apps later.
-
-If the full vision contradicts any of these — particularly target user or business model —
-the MVP scope (doc 02) and roadmap (doc 08) should be revisited first; the architecture
-(docs 06–07) is deliberately built to survive those pivots.
+1. **Cooking model:** meal-prep-first — 1–2 batch cook sessions covering the week's
+   lunches + dinners — per the founder's vision. This replaces the earlier dinner-only
+   recommendation.
+2. **Nutrition:** BMR/TDEE/macro *targets* and per-meal macros are in (deterministic math,
+   core to the gym-goer/health segment). Food *logging/tracking* stays out — PrepChef is a
+   decider, not a tracker.
+3. **Localization:** in as a v1 differentiator, but as curated **locale packs** (launch:
+   Pakistan + United States), not as an "any country" promise.
+4. **Breakfast:** simple rotation templates, not full generation. Snacks: suggested list
+   only.
+5. **AI assistant:** in, but as a constrained command layer over structured plan
+   operations — not open-ended chat.
+6. **Business model (unchanged assumption):** freemium subscription; single language
+   (English) at launch across both locale packs.

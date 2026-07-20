@@ -6,7 +6,7 @@
 
 | # | Company | Role | Link | Score | Status | Last action | Next action | Notes |
 |---|---------|------|------|-------|--------|-------------|-------------|-------|
-| 1 | Motive (gomotive) | TBD — confirm title from Cowork session | https://job-boards.greenhouse.io/gomotive/jobs/8620742002 | n/a | applied | 2026-07-15 applied via Cowork | send outreach (draft ready, needs contact + approval); follow up 2026-07-22 | User-supplied lead; outreach draft in career/outreach/motive-draft.md |
+| 1 | Motive (gomotive) | TBD — confirm title from Cowork session | https://job-boards.greenhouse.io/gomotive/jobs/8620742002 | n/a | closed-lost | 2026-07-17 rejected | none | User-supplied lead; application rejected |
 
 <!-- Example row:
 | 1 | Acme Travel | Head of Operations | https://... | 8/10 | applied | 2026-07-14 submitted via Greenhouse | follow up 2026-07-21 | recruiter: Jane Smith |

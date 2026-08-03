@@ -7,7 +7,7 @@
 | # | Company | Role | Link | Score | Status | Last action | Next action | Notes |
 |---|---------|------|------|-------|--------|-------------|-------------|-------|
 | 1 | Motive (gomotive) | TBD — confirm title from Cowork session | https://job-boards.greenhouse.io/gomotive/jobs/8620742002 | n/a | closed-lost | 2026-07-17 rejected | none | User-supplied lead; application rejected |
-| 2 | Epoch AI | Head of People | https://jobs.lever.co/epoch-ai/bae10238-f78d-48e4-a57a-c3333181a02e | 9 | sourced | 2026-07-17 sourced via Round 4 search | apply | Remote, 30→70 people, multi-country; high-growth match |
+| 2 | Epoch AI | Head of People | https://jobs.lever.co/epoch-ai/bae10238-f78d-48e4-a57a-c3333181a02e | 9 | applied | 2026-07-17 applied | follow up 2026-07-24 | Remote, 30→70 people, multi-country; high-growth match |
 | 3 | RemotePass | Head of HR Operations | https://jobs.workable.com/view/mmoqo2bkGZBnzMCr5fJP73/remote-head-of-hr-operations-in-portugal-at-remotepass | 7 | sourced | 2026-07-17 sourced via Round 4 search | apply | Remote Portugal, multi-country distributed teams |
 | 4 | Manychat | Head of People Operations | https://job-boards.greenhouse.io/manychat/jobs/8613227002 | 8 | sourced | 2026-07-17 verified live, not started | Cowork fill + submit | Amsterdam hub model; Cowork to fill form completely |
 

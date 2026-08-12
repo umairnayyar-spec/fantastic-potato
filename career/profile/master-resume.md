@@ -60,6 +60,18 @@ angles, both true:
 - Led HR integration following Epic's acquisition of Quixel — harmonizing org
   structures, job architecture, performance frameworks, employee data, and HR
   service delivery across regions, including teams in Sweden.
+- Orchestrated a two-entity legal merger in Sweden in under 5 months:
+  coordinated HR operations, legal, compensation, and admin; consulted local
+  worker unions; ran employee townhalls; transferred all staff and data to
+  the new entity.
+- Resolved a Pakistan-vs-international pay disparity driving tech and
+  3D-art attrition: built the business case, re-based compensation
+  benchmarks with the comp team, and secured one-time increments of 12–32%
+  for all eligible employees, halting the exits.
+- Handled exits and investigations across 7+ jurisdictions (China, Japan,
+  UK, France, USA, Sweden, Slovakia, Australia, Pakistan among them) with
+  legal counsel: performance separations, misconduct cases, third-party
+  contractor disputes.
 - Partnered with leadership on restructuring of Product, Product Strategy,
   and Automotive functions, balancing efficiency, capability retention, and
   business continuity.
@@ -92,8 +104,14 @@ angles, both true:
 - Led a team of 3 HR/HRBP professionals; owned the full employee lifecycle —
   workforce planning, hiring, onboarding, performance management, benefits
   administration, development, engagement, and offboarding.
-- Redesigned Talent Acquisition and implemented Lever ATS, reducing hiring
-  cycle time from 57 to 38 days while improving hiring quality.
+- Redesigned Talent Acquisition and implemented Lever ATS with structured
+  hiring governance, cutting hiring cycle time 33% (57 to 38 days) with zero
+  agency spend; closed 70+ hires in year one via in-house direct sourcing.
+- Executed a pre-acquisition redundancy of 13 roles end-to-end with zero
+  disputes: locally compliant, above-market severance plus outplacement
+  support; company reputation preserved.
+- Lifted engagement 12% in year one (third-party survey); Glassdoor rating
+  4.5/5.
 - Led HRMIS implementation and employee self-service automation, improving
   HR service-delivery accuracy, scalability, and turnaround.
 - Implemented MBO-based 360° performance management, strengthening
@@ -116,9 +134,12 @@ angles, both true:
   programs, and succession planning for business-critical roles.
 - Developed the organization's compensation structures.
 - Led organizational restructuring delivering 30% headcount optimization
-  through strategic workforce planning.
+  through strategic workforce planning, without loss of critical capability.
 - Owned end-to-end Talent Acquisition, maintaining an average 27-day
-  recruitment cycle.
+  recruitment cycle; built competency frameworks, HiPo, and succession
+  pipelines organization-wide.
+- Created a Technical Management Trainee program still running today: a
+  ready, plug-and-play talent pool protecting delivery against departures.
 - Introduced HR automation and self-service platforms, improving operational
   efficiency and employee experience.
 
@@ -129,6 +150,10 @@ angles, both true:
   calibration for 2,500+ employees.
 - Reduced turnover at Contact Centre North by 27% through targeted
   engagement and retention strategies.
+- Supported HR integration in Pakistan telecom's first-ever acquisition
+  (Warid into Mobilink), onboarding acquired staff.
+- Administered a brand-new performance management system for 5,000+
+  employees as master system administrator, driving on-time completion.
 - Established the HR analytics and KPI reporting function to support
   leadership decision-making.
 

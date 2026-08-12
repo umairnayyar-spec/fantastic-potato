@@ -16,25 +16,33 @@ never automated.
 
 Run these stages in order, skipping any that have nothing to do:
 
-1. **Ground yourself.** Read `career/profile/profile.md`,
-   `career/profile/preferences.md`, `career/profile/master-resume.md`, and
-   `career/applications/tracker.md`. If profile files are still mostly TODOs,
-   stop everything and interview the user to fill them — nothing else works
-   without them.
-2. **Source** (follow `.claude/skills/find-jobs/SKILL.md`): find new openings,
-   score them, add 7+ scorers to the tracker.
-3. **Tailor** (follow `.claude/skills/tailor-resume/SKILL.md`): for each
-   `sourced` row, produce the tailored resume + cover note.
-4. **Prepare applications** (follow `.claude/skills/apply/SKILL.md`): fill the
-   forms with Playwright up to — never past — the submit-review checkpoint.
-   Collect the filled-form screenshots for the report.
+1. **Ground yourself — read only what's needed.** Read
+   `career/profile/preferences.md` and `career/applications/tracker.md`
+   always. Read `career/profile/profile.md` and `master-resume.md` only when
+   this run will actually tailor a resume or fill a form (skip them on a
+   sourcing-only pass — they're large and stale between profile edits). If
+   profile files are still mostly TODOs, stop and interview the user.
+2. **Source** (follow `.claude/skills/find-jobs/SKILL.md` exactly — it now
+   caps WebSearch calls, rotates 2 markets per run instead of sweeping all
+   four, and auto-queues survivors into `career/applications/APPLY-CHECKLIST.md`
+   in the same pass). This stage alone is usually the whole job for an
+   unattended/scheduled run — network access to ATS sites is blocked in the
+   cloud session, so tailoring/filling/applying below can't run here anyway.
+3. **Tailor** (follow `.claude/skills/tailor-resume/SKILL.md`) — only if
+   running somewhere with browser/network access (e.g. invoked from Cowork),
+   for each `sourced` row not yet queued.
+4. **Prepare applications** (follow `.claude/skills/apply/SKILL.md`) — only
+   where network access exists. Fill forms up to — never past — the
+   submit-review checkpoint. Collect screenshots for the report.
 5. **Reverse-recruit** (follow `.claude/skills/outreach/SKILL.md`): for the
    highest-scoring rows, research the hiring manager/recruiter and draft
    personalized outreach (Gmail drafts where an address is published).
-6. **Report.** End with one consolidated summary: new roles found, resumes
-   tailored, applications awaiting the user's submit confirmation (with
-   screenshots), outreach drafts awaiting send, overdue follow-ups, and the
-   2–3 highest-value next actions for the user.
+6. **Report — table first, prose last.** One consolidated summary: new roles
+   found (table: company/role/score), how many are now queued in
+   APPLY-CHECKLIST.md ready to fill, applications awaiting the user's submit
+   confirmation, outreach drafts awaiting send, overdue follow-ups, and the
+   1–2 highest-value next actions. Keep it short enough to read on a phone —
+   this may run unattended and land as a notification.
 
 ## Non-negotiable rules
 

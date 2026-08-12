@@ -59,6 +59,21 @@
 
 ## Round log
 
+- **Round 5 — 2026-07-17 (test run of token-optimized skill, 2 searches, GCC +
+  Sweden).** Confirms Round 4's yield problem from a different angle: Sweden
+  generic query ("Sweden OR Stockholm") returned 0 genuinely Sweden-based
+  roles — WebSearch keyword-matches the country name but surfaces
+  Europe-broad/Barcelona/US postings that mention international scope. Do
+  not run generic Sweden queries again; go straight to the "to try" hypothesis
+  of scoping `careers.<company>.com` for named targets. GCC query mostly
+  returned roles already in tracker or mislocated (surfaced on a Dubai query
+  but actually Barcelona/unconfirmed). The two new-looking hits (Trendyol
+  HRBP Dubai, Trendyol HRBP Gulf/Riyadh) were NOT queued — caveat 3 already
+  flags Trendyol Gulf roles as nationality-restricted from Round 3; not worth
+  re-discovering the same dealbreaker. **0 rows added this round — correct
+  behavior, not a failed run:** the alternative was padding the tracker with
+  roles that would die on contact. 2-search budget was enough to reach this
+  conclusion; did not need the 3rd call.
 - **Round 4 — 2026-07-17.** Reality-check on Round 3's 8 ATS-scoped links:
   actually opened all 8 at apply time. Result: Teramind (dead/404), UpGuard
   (dead/404), Flow (Saudi-citizenship-only, auto-0), Netomi (US/Canada

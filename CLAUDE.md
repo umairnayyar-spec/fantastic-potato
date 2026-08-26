@@ -1,3 +1,10 @@
+## Writing style (applies to ALL output: outreach, resumes, LinkedIn copy, chat)
+
+- **Never use em dashes (—) or en dashes (–) in prose.** Use commas, colons,
+  parentheses, semicolons, or separate sentences instead. This applies to
+  everything written for Umair or sent on his behalf. Hyphens in compound
+  words (multi-country, remote-first) are fine.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.

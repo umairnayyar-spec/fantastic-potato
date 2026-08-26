@@ -1,8 +1,8 @@
-# Jazz — outreach draft
+# Jazz, outreach draft
 
 **Contact:** Ido Livneh, Co-founder/CEO. No published email found.
 **Channel:** LinkedIn message
-**Status:** drafted, awaiting Umair's review + approval — NOTE: Tel Aviv HQ,
+**Status:** drafted, awaiting Umair's review + approval, NOTE: Tel Aviv HQ,
 "flexible" location; verify Pakistan-remote is genuinely workable before
 pursuing further if this progresses past initial outreach.
 
@@ -12,7 +12,7 @@ pursuing further if this progresses past initial outreach.
 
 **Body:**
 
-Hi Ido — Jazz's emergence from stealth with $61M and 15 enterprise
+Hi Ido, Jazz's emergence from stealth with $61M and 15 enterprise
 customers already signed is a strong signal for the next phase of growth.
 At 45 people, with a "flexible location" culture already in place, this is
 often the stage where a dedicated People leader helps the hiring bar and
@@ -31,7 +31,7 @@ Best,
 Umair
 
 **LinkedIn connection note (300 char):**
-Hi Ido — congrats on Jazz's $61M and early enterprise traction. I've scaled
+Hi Ido, congrats on Jazz's $61M and early enterprise traction. I've scaled
 People functions at similar-stage tech cos (63→238, <5% attrition) and run
 HR across 7+ jurisdictions. Would love to connect if People leadership is
 on your roadmap.

@@ -1,9 +1,9 @@
-# Mecka (Mecka AI) — outreach draft
+# Mecka (Mecka AI), outreach draft
 
-**Contact:** Gao (co-founder; full name not confirmed in research — verify on
+**Contact:** Gao (co-founder; full name not confirmed in research, verify on
 LinkedIn before sending) or Mogen Cheng, co-founder. No published email found.
 **Channel:** LinkedIn message
-**Status:** drafted, awaiting Umair's review + approval — confirm founder's
+**Status:** drafted, awaiting Umair's review + approval, confirm founder's
 full name before sending
 
 ---
@@ -12,9 +12,9 @@ full name before sending
 
 **Body:**
 
-Hi — Mecka's jump from an $8M seed to $60M Series A, with a $100M ARR run
+Hi, Mecka's jump from an $8M seed to $60M Series A, with a $100M ARR run
 rate already in signed contracts, is a fast curve for a 40-person team.
-That combination — real revenue plus a well-capitalized scale-up phase — is
+That combination, real revenue plus a well-capitalized scale-up phase, is
 usually when People infrastructure needs to go from "founders handling it"
 to a dedicated function, fast.
 
@@ -31,7 +31,7 @@ Best,
 Umair
 
 **LinkedIn connection note (300 char):**
-Hi — following Mecka's Series A and the run rate you're already tracking
+Hi, following Mecka's Series A and the run rate you're already tracking
 toward. I build People functions from zero at this stage and have scaled
 orgs 63→238 with <5% attrition. Open to a quick chat if People leadership
 is next on the roadmap.

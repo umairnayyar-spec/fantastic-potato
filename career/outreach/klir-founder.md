@@ -1,8 +1,12 @@
 # Klir — outreach draft
 
-**Contact:** Elaine Kelly, Founder/CEO (no published email found — send via LinkedIn)
+**Contact:** Elaine Kelly, Co-Founder & **COO** (David Lynch is CEO — earlier
+draft had this wrong, corrected 2026-08-26 from klir.com/careers).
 **Channel:** LinkedIn message (paste manually; not sent automatically)
-**Status:** drafted, awaiting Umair's review + approval
+**Status:** SUPERSEDED — use `klir-diagnostic-memo.md` instead. That version is
+built on real evidence from Klir's careers page and live job board, and is a
+much stronger opener than this generic version. Keeping this file only as a
+comparison point for the two approaches.
 
 ---
 

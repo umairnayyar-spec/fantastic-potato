@@ -3,7 +3,7 @@
 **Contact:** Gao (co-founder; full name not confirmed in research, verify on
 LinkedIn before sending) or Mogen Cheng, co-founder. No published email found.
 **Channel:** LinkedIn message
-**Status:** drafted, awaiting Umair's review + approval, confirm founder's
+**Status:** ON HOLD, do not send. Validation pass 2026-08-26: founder name incomplete ("Gao", no confirmed full name) and headcount/ARR figures are from a single press cycle. Needs live verification before any send. Original note: confirm founder's
 full name before sending
 
 ---

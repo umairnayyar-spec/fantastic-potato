@@ -2,7 +2,7 @@
 
 **Contact:** Jeremy Fraenkel, Founder/CEO (no published email found, LinkedIn)
 **Channel:** LinkedIn message
-**Status:** drafted, awaiting Umair's review + approval
+**Status:** ON HOLD, do not send. Validation pass 2026-08-26: search results conflated two companies named Fundamental (Fundamental Research Labs, founder Robert Yang, ~$40M; and Fundamental, founder Jeremy Fraenkel, $255M tabular-AI). Cannot confirm which one Umair's list meant or that the draft names the right founder. Needs live verification via Firecrawl before any send.
 
 ---
 

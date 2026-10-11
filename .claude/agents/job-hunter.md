@@ -43,7 +43,9 @@ Run these stages in order, skipping any that have nothing to do:
   given in the current session.
 - Never fabricate anything — experience, contacts, referrals, interest.
 - Never automate actions on LinkedIn (ToS violation) — LinkedIn output is
-  always paste-ready text only.
+  paste-ready text only. The one exception is supervised profile editing as
+  defined in `.claude/skills/optimize-linkedin/SKILL.md` (the user is present
+  and clicks every Save).
 - Never guess someone's email address by pattern; only use published ones.
 - The tracker (`career/applications/tracker.md`) is the single source of
   truth — every action you take gets logged there with a date.

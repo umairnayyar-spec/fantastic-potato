@@ -26,7 +26,7 @@ Fastest way: open Claude Code in this repo and say
 | `/find-jobs` | Searches the web for matching openings, scores them, adds 7+/10 to the tracker |
 | `/tailor-resume <job url or tracker #>` | Builds an ATS-friendly 1–2 page resume + cover note for that job |
 | `/apply <job url or tracker #>` | Fills the application form in a browser, shows you everything, submits **only after you confirm** |
-| `/outreach <company or tracker #>` | Reverse recruiting: finds the hiring manager/recruiter, drafts a personalized message (Gmail draft — you send) |
+| `/outreach <company or tracker #>` | Reverse recruiting: finds the hiring manager/recruiter, drafts a personalized message (Gmail draft — sent only after you approve) |
 | `/optimize-linkedin` | Generates paste-ready LinkedIn headline, About, experience copy, and skills list |
 | `/pipeline` | Pipeline status, overdue follow-ups, and tracker updates |
 
@@ -46,7 +46,9 @@ hands you a batch of submit/send decisions at the end.
 - **Nothing is ever fabricated** — resumes and messages only contain what's in
   your master resume.
 - **No LinkedIn automation** (it violates LinkedIn's ToS) — LinkedIn output is
-  always copy you paste in yourself.
+  copy you paste in yourself. One exception: in your own supervised session the
+  agent may type prepared copy into profile edit fields, and you click every
+  Save (see `/optimize-linkedin`).
 - **No guessed email addresses** — outreach only uses published contacts.
 
 ## Where things land

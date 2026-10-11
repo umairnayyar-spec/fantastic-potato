@@ -32,10 +32,10 @@ who can hire. Input: a company name, a tracker row, or "top N in my pipeline".
      "happy to apply formally if there's a fit"). No flattery padding.
    - A 300-character LinkedIn connection-note variant underneath.
 5. If a real email address was found and the Gmail tools are available,
-   create a **Gmail draft** (never send) addressed to the contact, and tell
-   the user it's sitting in their drafts folder for review.
-6. Update the tracker: status → `outreach-sent` only after the user actually
-   sends; until then note "outreach drafted". Log the action.
+   create a **Gmail draft** addressed to the contact and hold it for
+   approval — send only per the sending policy below.
+6. Update the tracker: status → `outreach-sent` only once the email is
+   actually sent; until then note "outreach drafted". Log the action.
 
 ## Sending policy — APPROVAL REQUIRED (Umair, 2026-07-15)
 
@@ -44,7 +44,7 @@ identification, personalized writing, Gmail draft creation — but **every
 send requires Umair's explicit approval first**. Batch approval is fine:
 present all pending messages together ("here are 4 outreach emails ready —
 approve all, or pick") and send the approved ones. Never send anything he
-hasn't seen in this or the current session.
+hasn't seen in the current session.
 
 Rails — all mandatory, no exceptions:
 

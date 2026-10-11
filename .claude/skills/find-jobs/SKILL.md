@@ -41,7 +41,7 @@ Source new job openings that match the candidate's preferences.
 ## Rules
 
 - Never add duplicate rows. Match on company + role title.
-- Only include postings you actually verified are live — no stale aggregator
-  links.
+- Only include postings with a direct ATS or company posting link — no
+  aggregator links. Mark any you couldn't open "verify on apply".
 - If the user gives extra context in the command (e.g. `/find-jobs fintech
   only`), apply it on top of preferences.md for this run.

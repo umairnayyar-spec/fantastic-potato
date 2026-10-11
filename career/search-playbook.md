@@ -35,7 +35,7 @@
    US-work-authorization-only. For every remote role, the verify step must
    check: does it accept candidates working from Pakistan (via EOR/contract),
    or is it geo-restricted? Flag remote rows `remote — check geo eligibility`.
-2. **WebFetch is blocked in the cloud sourcing session** → can't open a
+2. **If WebFetch is blocked** (it was in the cloud sourcing sessions) → can't open a
    posting to confirm live or read full JD. ATS URLs from search are high-
    confidence (they're live listings), but final live-check + JD read happens
    in the apply session (Cowork / unrestricted). Mark cloud-sourced rows
@@ -49,8 +49,6 @@
 
 ## To try next round (hypotheses)
 
-- Add `jobs.workable.com` + SmartRecruiters scoping — likely surfaces more
-  GCC scale-ups.
 - For Pakistan-local: try `rozee.pk` and `mustakbil.com` domain-scoped (the
   main PK ATS/boards) — WebSearch under-indexes these.
 - For Sweden: scope to `careers.<company>.com` for the named targets

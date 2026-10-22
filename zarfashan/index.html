@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Zarfashan — The Lookbook</title>
+  <meta name="description" content="Zarfashan, a private shoot venue in Bara Koh, Islamabad. A brick and glass house, booked whole." />
+  <meta name="theme-color" content="#1C1714" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Zarfashan — The Lookbook" />
+  <meta property="og:description" content="Private shoot venue · Bara Koh, Islamabad. Lawns, Margalla views and natural light, booked whole." />
+  <meta property="og:image" content="img/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" as="image" type="image/webp" href="img/cover-720.webp" imagesrcset="img/cover-400.webp 400w, img/cover-720.webp 720w, img/cover-1080.webp 1080w" imagesizes="(min-width: 794px) 510px, 80vw" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonts load without blocking first paint; the Urdu font is subset to the six letters of the wordmark -->
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@500&amp;text=%D8%B2%D8%B1%D8%A7%D9%81%D8%B4%D8%A7%DA%BA&amp;display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap" /></noscript>
+  <style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#1C1714;--cream:#F1EAE0;--text:#2A211C;--gold:#C9A36B;--rust:#9C4A2F;--brass:#A8834A;
+  --mute-on-dark:#D8CEC0;--mute-on-light:#6B5B4E;--folio-on-dark:#B5A898;--rule-dark:#4A3E35;--rule-light:#CDBFAE;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --gutter:clamp(20px,6vw,52px);
+}
+html{-webkit-text-size-adjust:100%;background:#110E0C}
+body{margin:0;font-family:var(--sans);font-weight:300;background:#110E0C;color:var(--cream);-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:auto;background:#2A231E}
+h1,h2,p{margin:0}
+a{color:inherit}
+em{font-style:italic}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.pg{position:relative;max-width:794px;margin:0 auto;padding:clamp(72px,16vw,120px) var(--gutter) clamp(84px,17vw,128px);display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,6vw,40px)}
+@media (min-width:794px){.pg{min-height:1123px}}
+.dark{background:var(--ink);color:var(--cream)}
+.light{background:var(--cream);color:var(--text)}
+.dark em{color:var(--gold)}
+.light em{color:var(--rust)}
+
+.eyebrow{font-size:12px;letter-spacing:.34em;text-transform:uppercase;font-weight:500}
+.dark .eyebrow{color:var(--gold)}
+.light .eyebrow{color:var(--rust)}
+.head{display:flex;flex-direction:column;gap:14px}
+.h-xl,.h-lg,.h-md,.h-sm{font-family:var(--serif);font-weight:400;line-height:1.06;text-wrap:balance}
+.h-xl{font-size:clamp(40px,10.5vw,62px)}
+.h-lg{font-size:clamp(36px,9vw,50px);line-height:1.08}
+.h-md{font-size:clamp(32px,8.4vw,46px)}
+.rule{width:56px;height:1px;background:var(--gold)}
+.light .rule{background:var(--brass)}
+.rule-sm{width:40px}
+.note{font-size:14px;line-height:1.6;max-width:360px}
+.dark .note{color:var(--mute-on-dark)}
+.light .note{color:var(--mute-on-light)}
+.note-right{align-self:flex-end;text-align:right}
+.folio{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:11px;letter-spacing:.34em;text-transform:uppercase}
+.dark .folio{color:var(--folio-on-dark)}
+.light .folio{color:var(--mute-on-light)}
+.light .lift{box-shadow:0 2px 12px rgba(28,23,20,.12)}
+
+.pair{display:grid;gap:clamp(12px,3.4vw,24px);align-items:start}
+.pair>:last-child{margin-top:var(--drop)}
+
+/* Lockup */
+.lockup{display:flex;align-items:center;gap:18px;color:var(--gold)}
+.lockup-en{font-size:15px;font-weight:400;letter-spacing:.52em;text-transform:uppercase;margin-right:-.52em}
+.lockup-rule{width:1px;height:30px;background:var(--gold);opacity:.6}
+.lockup-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:22px;line-height:1}
+
+/* 01 Cover */
+.cover{align-items:center;text-align:center;padding-top:clamp(48px,12vw,64px);padding-bottom:clamp(56px,12vw,64px)}
+.cover img{max-width:510px}
+.cover-title{font-family:var(--serif);font-weight:400;font-size:clamp(48px,13vw,64px);line-height:1}
+.cover-sub{font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--mute-on-dark);line-height:1.8}
+.cover-foot{display:flex;flex-direction:column;align-items:center;gap:16px}
+
+/* 02 The house */
+.intro{padding-left:clamp(24px,12vw,120px);padding-right:clamp(24px,12vw,120px);gap:30px}
+.intro .h-xl{font-size:clamp(40px,10.5vw,60px);line-height:1.04}
+.body{font-size:17px;line-height:1.75;max-width:520px}
+
+/* 05 Seen from above */
+.above{display:grid;grid-template-columns:1fr;gap:24px}
+.above-text{display:flex;flex-direction:column;gap:14px}
+.above-text .h-sm{font-size:34px;line-height:1.1}
+@media (min-width:560px){
+  .above{grid-template-columns:540fr 150fr;align-items:end;gap:36px}
+  .above-text{padding-bottom:8px;gap:18px}
+}
+
+/* 07 Lines */
+.lines{display:grid;grid-template-columns:300fr 366fr;gap:clamp(16px,5vw,40px);align-items:end}
+.lines-text{display:flex;flex-direction:column;gap:clamp(12px,3vw,18px);padding-bottom:12px}
+.lines-text .h-md{font-size:clamp(28px,7.6vw,52px)}
+
+/* 12 Planning */
+.planning{padding-left:clamp(20px,11vw,88px);padding-right:clamp(20px,11vw,88px)}
+.facts{display:grid;grid-template-columns:1fr;gap:26px 48px}
+.fact{display:flex;flex-direction:column;gap:6px}
+.fact h3{margin:0;font-family:var(--serif);font-size:23px;font-weight:500}
+.fact p,.rules p{font-size:15px;line-height:1.6}
+.rules{border-top:1px solid var(--rule-light);padding-top:22px;display:flex;flex-direction:column;gap:8px}
+@media (min-width:560px){.facts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px}}
+
+/* 13 Rates */
+.rates-pg{padding-left:clamp(20px,11vw,88px);padding-right:clamp(20px,11vw,88px);gap:clamp(36px,7vw,44px)}
+.lede{font-size:clamp(17px,4.4vw,19px);line-height:1.55;font-weight:400}
+.rates{display:flex;flex-direction:column}
+.rate{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:12px;padding:18px 0;border-bottom:1px solid var(--rule-dark)}
+.rate-name{font-size:clamp(18px,4.8vw,20px);font-weight:400}
+.rate-name small{display:block;font-size:15px;color:var(--mute-on-dark);margin-top:2px}
+.price{font-family:var(--serif);font-size:clamp(28px,7.4vw,34px);color:var(--gold);font-variant-numeric:lining-nums;white-space:nowrap}
+.rates-promo .rate{grid-template-columns:1fr minmax(auto,150px) minmax(auto,170px)}
+.rates-promo .rate>:nth-child(n+2){text-align:right}
+.was{font-family:var(--serif);font-size:clamp(20px,5.4vw,26px);color:var(--mute-on-dark);text-decoration-thickness:1px;white-space:nowrap}
+.rate-head{padding:0 0 6px}
+.rate-head span{font-size:13px;font-weight:500;letter-spacing:.26em;text-transform:uppercase}
+.col-std{color:var(--mute-on-dark)}
+.col-new{color:var(--gold)}
+@media (min-width:560px){.rate-name small{display:inline;margin:0 0 0 .5em}}
+@media (max-width:559px){
+  .rates-promo .rate{row-gap:4px}
+  .rates-promo .rate-name{grid-column:1/-1}
+  .rates-promo .rate-name small{display:inline;margin-left:.4em}
+  .rate-head span{font-size:11px;letter-spacing:.16em}
+}
+.steps{display:grid;grid-template-columns:1fr;gap:16px 40px;margin:0;padding:0;list-style:none}
+.steps li{display:flex;gap:14px;font-size:17px;line-height:1.5;font-weight:400}
+.steps b{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--gold);line-height:1}
+@media (min-width:560px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.policy{font-size:17px;line-height:1.55;font-weight:400}
+.book{display:flex;flex-direction:column;gap:18px}
+
+/* 14 Back cover */
+.back{overflow:hidden;align-items:center;text-align:center;min-height:min(100svh,1123px)}
+.back-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.back::after{content:"";position:absolute;inset:0;background:rgba(20,15,12,.74)}
+.back-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:36px}
+.back .lockup{transform:scale(1.35);margin:8px 0}
+.back-title{font-family:var(--serif);font-weight:400;font-size:clamp(52px,14vw,76px);line-height:1.05;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+.contact{display:flex;flex-direction:column;gap:6px;font-size:clamp(17px,4.8vw,22px);font-weight:400;line-height:1.5;color:#F7F1E8;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.contact a{display:inline-block;padding:8px 4px;text-decoration:none;border-bottom:1px solid rgba(201,163,107,.55)}
+.contact a:active,.contact a:hover{color:var(--gold)}
+.contact .addr{padding:8px 4px}
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ── 01 COVER ── -->
+  <section class="pg dark cover">
+    <div class="lockup"><span class="lockup-en">Zarfashan</span><span class="lockup-rule" aria-hidden="true"></span><span class="lockup-ur" lang="ur">زرافشاں</span></div>
+    <img src="img/cover-720.webp" srcset="img/cover-400.webp 400w, img/cover-720.webp 720w, img/cover-1080.webp 1080w" sizes="(min-width: 794px) 510px, calc(100vw - 40px)" width="510" height="680" alt="Afternoon sun across a brick wall above a carved swing" fetchpriority="high" decoding="async">
+    <div class="cover-foot">
+      <h1 class="cover-title">The <em>Lookbook</em></h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="cover-sub">Private shoot venue · Bara Koh, Islamabad</p>
+    </div>
+  </section>
+
+  <!-- ── 02 THE HOUSE ── -->
+  <section class="pg light intro">
+    <div class="eyebrow">The house</div>
+    <h2 class="h-xl">A brick and glass house, <em>booked whole.</em></h2>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="body">A private shoot venue in Bara Koh, just off Murree Road in Islamabad. One booking gives you the whole house and its grounds for your time: natural light through the day, lawns and open Margalla views.</p>
+    <p class="body">Made for bridal and pre-wedding shoots, couples, fashion and editorial work, brand content and portraits.</p>
+    <p class="folio">Zarfashan · 02</p>
+  </section>
+
+  <!-- ── 03 LAWNS ── -->
+  <section class="pg dark">
+    <h2 class="h-xl">Open lawns, <em>Margalla views.</em></h2>
+    <img src="img/lawn-720.webp" srcset="img/lawn-400.webp 400w, img/lawn-720.webp 720w, img/lawn-1080.webp 1080w" sizes="(min-width: 794px) 706px, calc(100vw - 40px)" width="706" height="397" alt="The open lawn with the Margalla hills under a cloudy sky" loading="lazy" decoding="async">
+    <p class="note note-right">Wide lawns with the hills behind, inside the property and yours for the booking.</p>
+    <p class="folio">Zarfashan · 03</p>
+  </section>
+
+  <!-- ── 04 OUTSIDE ── -->
+  <section class="pg light">
+    <header class="head">
+      <div class="eyebrow">Outside</div>
+      <h2 class="h-md">Gravel, brick <em>and open sky.</em></h2>
+    </header>
+    <div class="pair" style="grid-template-columns: 353fr 313fr; --drop: clamp(40px, 11vw, 90px)"><img class="lift" src="img/gravel-720.webp" srcset="img/gravel-400.webp 400w, img/gravel-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="353" height="470" alt="White gravel and garden chairs before the brick house" loading="lazy" decoding="async"><img class="lift" src="img/bench-720.webp" srcset="img/bench-400.webp 400w, img/bench-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="313" height="470" alt="A wooden garden bench on gravel before a wall of glass" loading="lazy" decoding="async"></div>
+    <p class="folio">Zarfashan · 04</p>
+  </section>
+
+  <!-- ── 05 SEEN FROM ABOVE ── -->
+  <section class="pg dark">
+    <div class="above">
+      <img src="img/above-720.webp" srcset="img/above-400.webp 400w, img/above-720.webp 720w, img/above-1080.webp 1080w" sizes="(min-width: 794px) 540px, (min-width: 560px) 72vw, calc(100vw - 40px)" width="540" height="810" alt="Looking down on red velvet chairs, a carpet and a chandelier" loading="lazy" decoding="async">
+      <div class="above-text">
+        <div class="rule rule-sm" aria-hidden="true"></div>
+        <h2 class="h-sm">Seen <em>from above.</em></h2>
+        <p class="note">Chandelier, carpet and red velvet.</p>
+      </div>
+    </div>
+    <p class="folio">Zarfashan · 05</p>
+  </section>
+
+  <!-- ── 06 LOUNGE ── -->
+  <section class="pg light">
+    <header class="head">
+      <div class="eyebrow">Light</div>
+      <h2 class="h-xl">Tall glass, <em>red brick.</em></h2>
+    </header>
+    <img class="lift" src="img/lounge-720.webp" srcset="img/lounge-400.webp 400w, img/lounge-720.webp 720w, img/lounge-1080.webp 1080w" sizes="(min-width: 794px) 706px, calc(100vw - 40px)" width="706" height="471" alt="Red velvet sofas, carved wood and a patterned daybed below tall windows" loading="lazy" decoding="async">
+    <p class="note note-right">Natural light through the day, with room for a full look in frame.</p>
+    <p class="folio">Zarfashan · 06</p>
+  </section>
+
+  <!-- ── 07 LINES ── -->
+  <section class="pg dark">
+    <img src="img/glass-720.webp" srcset="img/glass-400.webp 400w, img/glass-720.webp 720w, img/glass-1080.webp 1080w" sizes="(min-width: 794px) 706px, calc(100vw - 40px)" width="706" height="397" alt="Brick, steel rods and tall glass looking out to green" loading="lazy" decoding="async">
+    <div class="lines">
+      <img src="img/stair-720.webp" srcset="img/stair-400.webp 400w, img/stair-720.webp 720w" sizes="(min-width: 794px) 300px, 42vw" width="300" height="533" alt="Timber treads climbing a brick wall" loading="lazy" decoding="async">
+      <div class="lines-text">
+        <div class="eyebrow">Lines</div>
+        <h2 class="h-md">Timber, steel <em>and brick.</em></h2>
+        <div class="rule rule-sm" aria-hidden="true"></div>
+        <p class="note">Strong lines that lead the eye through the frame, from the stair to the glass.</p>
+      </div>
+    </div>
+    <p class="folio">Zarfashan · 07</p>
+  </section>
+
+  <!-- ── 08 GREEN AND STEEL ── -->
+  <section class="pg light">
+    <header class="head">
+      <div class="eyebrow">Inside</div>
+      <h2 class="h-md">Palms, lantern light <em>and black steel.</em></h2>
+    </header>
+    <div class="pair" style="grid-template-columns: 320fr 360fr; --drop: clamp(40px, 11vw, 90px)"><img class="lift" src="img/palms-720.webp" srcset="img/palms-400.webp 400w, img/palms-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="320" height="480" alt="Potted palms around a carved door under a woven lantern" loading="lazy" decoding="async"><img class="lift" src="img/spiral-720.webp" srcset="img/spiral-400.webp 400w, img/spiral-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="360" height="480" alt="A black spiral of steel steps under a skylight" loading="lazy" decoding="async"></div>
+    <p class="folio">Zarfashan · 08</p>
+  </section>
+
+  <!-- ── 09 DETAILS ── -->
+  <section class="pg dark">
+    <header class="head">
+      <div class="eyebrow">Details</div>
+      <h2 class="h-md">Carved wood, <em>rich textiles.</em></h2>
+    </header>
+    <div class="pair" style="grid-template-columns: 1fr 1fr; --drop: clamp(40px, 11vw, 90px)"><img src="img/daybed-720.webp" srcset="img/daybed-400.webp 400w, img/daybed-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="333" height="500" alt="A carved daybed with red bolsters" loading="lazy" decoding="async"><img src="img/swing-720.webp" srcset="img/swing-400.webp 400w, img/swing-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="333" height="500" alt="A carved wooden swing against a brick wall" loading="lazy" decoding="async"></div>
+    <p class="folio">Zarfashan · 09</p>
+  </section>
+
+  <!-- ── 10 WOOD AND BRICK ── -->
+  <section class="pg light">
+    <header class="head">
+      <div class="eyebrow">Texture</div>
+      <h2 class="h-md">Hand-carved wood, <em>red brick.</em></h2>
+    </header>
+    <div class="pair" style="grid-template-columns: 1fr 1fr; --drop: clamp(40px, 11vw, 90px)"><img class="lift" src="img/door-720.webp" srcset="img/door-400.webp 400w, img/door-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="333" height="500" alt="A hand-carved wooden door framed by palm leaves" loading="lazy" decoding="async"><img class="lift" src="img/brick-720.webp" srcset="img/brick-400.webp 400w, img/brick-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="333" height="500" alt="A wall of deep red brick" loading="lazy" decoding="async"></div>
+    <p class="folio">Zarfashan · 10</p>
+  </section>
+
+  <!-- ── 11 NOOKS ── -->
+  <section class="pg dark">
+    <header class="head">
+      <div class="eyebrow">Corners</div>
+      <h2 class="h-md">Quiet corners, <em>ready to frame.</em></h2>
+    </header>
+    <div class="pair" style="grid-template-columns: 306fr 362fr; --drop: clamp(48px, 14vw, 110px)"><img src="img/console-720.webp" srcset="img/console-400.webp 400w, img/console-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="306" height="544" alt="A carved console and horse painting beside a timber door" loading="lazy" decoding="async"><img src="img/lamps-720.webp" srcset="img/lamps-400.webp 400w, img/lamps-720.webp 720w" sizes="(min-width: 794px) 340px, 46vw" width="362" height="544" alt="Mosaic lamps above a painted cabinet, with folding stools on a patterned rug" loading="lazy" decoding="async"></div>
+    <p class="folio">Zarfashan · 11</p>
+  </section>
+
+  <!-- ── 12 PLANNING YOUR SHOOT ── -->
+  <section class="pg light planning">
+    <header class="head" style="gap: 22px">
+      <div class="eyebrow">For photographers and clients</div>
+      <h2 class="h-lg">Planning <em>your shoot.</em></h2>
+      <div class="rule" aria-hidden="true"></div>
+    </header>
+    <div class="facts">
+      <div class="fact"><h3>The whole venue</h3><p>The house and grounds are yours alone for the booked time. No shared shoots.</p></div>
+      <div class="fact"><h3>Hours</h3><p>9:00 am to 7:00 pm daily, with natural light through the day. Venue clear by 7:15 pm.</p></div>
+      <div class="fact"><h3>Your team</h3><p>Up to 6 people per booking, including photographer and talent. No children.</p></div>
+      <div class="fact"><h3>Your time</h3><p>Setup and pack-down sit inside your booking. After a 5-minute grace, the 30-minute add-on applies if the next slot allows.</p></div>
+      <div class="fact"><h3>On the day</h3><p>Parking inside the property. A changing room on request, for changing only.</p></div>
+      <div class="fact"><h3>Styling the set</h3><p>Want furniture moved? Tell our on-site team and we will help wherever we can.</p></div>
+    </div>
+    <div class="rules">
+      <div class="eyebrow">House rules</div>
+      <p>No smoking and no food indoors. No confetti, glitter, smoke or open flames. No tape or nails on any surface.</p>
+    </div>
+    <p class="folio">Zarfashan · 12</p>
+  </section>
+
+  <!-- ── 13 RATES AND BOOKING ── -->
+  <section class="pg dark rates-pg">
+    <header class="head" style="gap: 22px">
+      <div class="eyebrow">Rates</div>
+      <h2 class="h-lg">The whole venue, <em>one booking.</em></h2>
+    </header>
+    <div class="rates">
+      <div class="rate"><div class="rate-name">1 hour <small>minimum booking</small></div><span class="price">Rs 25,000</span></div>
+      <div class="rate"><div class="rate-name">2 hours</div><span class="price">Rs 40,000</span></div>
+      <div class="rate"><div class="rate-name">Extra 30 minutes <small>add-on to a booking</small></div><span class="price">Rs 13,000</span></div>
+    </div>
+    <div class="book">
+      <div class="eyebrow">How to book</div>
+      <ol class="steps">
+        <li><b>1</b><span>Send your date and time, type of shoot and number of people.</span></li>
+        <li><b>2</b><span>We confirm availability and hold your slot.</span></li>
+        <li><b>3</b><span>A 50% advance confirms it. The balance is paid before arrival.</span></li>
+        <li><b>4</b><span>We share the exact location pin.</span></li>
+      </ol>
+    </div>
+    <p class="policy">One free reschedule with 72 hours notice. Cancellations under 72 hours forfeit the advance.</p>
+    <p class="folio">Zarfashan · 13</p>
+  </section>
+
+  <!-- ── 14 BACK COVER ── -->
+  <section class="pg dark back">
+    <img class="back-bg" src="img/brick-720.webp" srcset="img/brick-400.webp 400w, img/brick-720.webp 720w" sizes="(min-width: 794px) 794px, 100vw" width="333" height="500" alt="" loading="lazy" decoding="async">
+    <div class="back-inner">
+      <div class="lockup"><span class="lockup-en">Zarfashan</span><span class="lockup-rule" aria-hidden="true"></span><span class="lockup-ur" lang="ur">زرافشاں</span></div>
+      <div class="rule" aria-hidden="true"></div>
+      <h2 class="back-title">Book <em>your date.</em></h2>
+      <div class="contact">
+        <a href="https://ig.me/m/zarfashan.studios">Instagram @zarfashan.studios <span style="white-space: nowrap">· DM “BOOK”</span></a>
+        <a href="mailto:zarfashan.studios@gmail.com">zarfashan.studios@gmail.com</a>
+        <span class="addr">Bara Koh, off Murree Road, Islamabad</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

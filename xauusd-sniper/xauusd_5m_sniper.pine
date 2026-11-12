@@ -1,0 +1,100 @@
+//@version=6
+indicator("XAUUSD 5m Volatility Breakout [Anti-Trap Longs]", overlay=true)
+
+// ==============================
+// 1. TIME & DIRECTION FILTERS
+// ==============================
+tradeSession = input.session("0700-2030:23456", title="Allowed Trade Session (UTC)")
+inSession    = not na(time(timeframe.period, tradeSession, "UTC"))
+isGapOrRollover = (dayofweek == dayofweek.monday and hour < 1) or (hour == 21) or (hour == 22)
+allowedTime     = inSession and not isGapOrRollover
+
+allowLongs   = input.bool(true, title="Enable Long Signals", group="Direction Controls")
+allowShorts  = input.bool(true, title="Enable Short Signals", group="Direction Controls")
+
+// ==============================
+// 2. BREAKOUT ENVELOPE ENGINE
+// ==============================
+baseLength = input.int(20, title="Base Median Length", group="Breakout Engine")
+atrLength  = input.int(10, title="ATR Band Length", group="Breakout Engine")
+multiplier = input.float(1.8, title="ATR Band Multiplier", group="Breakout Engine")
+rrRatio    = input.float(2.0, title="Risk-to-Reward Ratio (1:X)", group="Risk Metrics")
+
+medianLine = ta.ema(close, baseLength)
+bandRange  = ta.atr(atrLength) * multiplier
+
+upperBand = medianLine + bandRange
+lowerBand = medianLine - bandRange
+
+plot(medianLine, color=color.new(color.orange, 50), title="Median Base")
+plot(upperBand, color=color.new(color.green, 60), title="Upper Envelope")
+plot(lowerBand, color=color.new(color.red, 60), title="Lower Envelope")
+
+// ==============================
+// 3. RELATIVE VOLUME & EXHAUSTION FILTERS
+// ==============================
+rvolLength = input.int(20, title="Volume MA Length", group="Volume Confirmation")
+rvolThresh = input.float(1.5, title="Relative Volume Threshold", group="Volume Confirmation") 
+volumeMA   = ta.sma(volume, rvolLength)
+volumeConfirmed = volumeMA > 0 ? (volume / volumeMA) >= rvolThresh : true
+
+// Anti-Bull-Trap Filters for Longs
+candleRange  = high - low
+upperWick    = high - math.max(open, close)
+noTopWick    = candleRange > 0 ? (upperWick / candleRange) < 0.25 : false
+uptrendSlope = medianLine > medianLine[2]
+
+// ==============================
+// 4. EXECUTION LOGIC & STATE CONTROL
+// ==============================
+var int posState = 0 // 0 = Flat, 1 = In Long, -1 = In Short
+var int entryBar = na
+var float activeSL = na
+var float activeTP = na
+
+// Reset position state ONLY on bars AFTER the entry bar
+if posState == 1 and bar_index > entryBar and (low <= activeSL or high >= activeTP or not allowedTime)
+    posState := 0
+if posState == -1 and bar_index > entryBar and (high >= activeSL or low <= activeTP or not allowedTime)
+    posState := 0
+
+// Long requires: break above band + strong close (no exhaustion wick) + upward median slope + volume
+rawBuy  = allowLongs and (close > upperBand) and (close[1] <= upperBand[1]) and noTopWick and uptrendSlope and volumeConfirmed and allowedTime
+
+// Short keeps original high-performing breakout logic untouched
+rawSell = allowShorts and ta.crossunder(close, lowerBand) and volumeConfirmed and allowedTime
+
+buySignal  = rawBuy and (posState == 0)
+sellSignal = rawSell and (posState == 0)
+
+if buySignal
+    posState := 1
+    entryBar := bar_index
+    activeSL := medianLine
+    activeTP := close + ((close - activeSL) * rrRatio)
+    label.new(bar_index, low, 
+              text="🟢 SNIPER LONG\n" + 
+                   "👉 ENTRY: " + str.tostring(close, "#.00") + "\n" +
+                   "🛑 STOP LOSS: " + str.tostring(activeSL, "#.00") + "\n" +
+                   "🎯 TAKE PROFIT: " + str.tostring(activeTP, "#.00"), 
+              style=label.style_label_up, color=#00E676, textcolor=color.white, yloc=yloc.belowbar, size=size.normal)
+
+if sellSignal
+    posState := -1
+    entryBar := bar_index
+    activeSL := medianLine
+    activeTP := close - ((activeSL - close) * rrRatio)
+    label.new(bar_index, high, 
+              text="🔴 SNIPER SHORT\n" + 
+                   "👉 ENTRY: " + str.tostring(close, "#.00") + "\n" +
+                   "🛑 STOP LOSS: " + str.tostring(activeSL, "#.00") + "\n" +
+                   "🎯 TAKE PROFIT: " + str.tostring(activeTP, "#.00"), 
+              style=label.style_label_down, color=color.red, textcolor=color.white, yloc=yloc.abovebar, size=size.normal)
+
+// ==============================
+// 5. UNIFIED MOBILE ALERT HOOK
+// ==============================
+anySignal = buySignal or sellSignal
+alertcondition(anySignal, title="Sniper Breakout Signal (Buy or Sell)", message="🚨 XAUUSD 5M BREAKOUT SIGNAL! Open TradingView to view Entry, SL, and TP.")
+
+bgcolor(allowedTime ? color.new(#00E676, 98) : na)

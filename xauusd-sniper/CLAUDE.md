@@ -15,7 +15,7 @@ averages or oscillators, and do not suggest converting it to a strategy.
 ### Risk rules (strict)
 - Max risk per trade: **2% = $10.00 USD**, hard cap.
 - Contract math on Will Trade: **`0.01` lot = 1 oz Gold**, so a **$1.00 move in Gold = $1.00 P&L** per 0.01 lot.
-- Position size: `lots = floor(10.00 / |Entry − SL|) × 0.01` (never round up).
+- Position size: `max_risk = min(2% × current balance, $10.00)`; `lots = floor(max_risk / |Entry − SL|) × 0.01` (never round up). Note 2% of $497 is $9.94, so the balance rule binds before the $10 cap. Use `risk_calc.py`.
 - **Skip rule:** if `|Entry − SL| > $10.00`, **skip the trade** — even 0.01 lot would break the 2% cap.
 - **Tight-stop warning:** if `|Entry − SL| < $0.50` (5 pips), warn that broker spread will likely sweep the stop.
 

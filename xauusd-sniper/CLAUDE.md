@@ -54,12 +54,19 @@ These were tested and discarded. Never re-suggest them.
 
 ## 4. Current Status
 
-- Production script: `xauusd_5m_sniper.pine` (Pine v6, `indicator()`).
-- Backtest edge verified: **1.801 PF, 50% WR**.
-- Newest change: Anti-Trap Long filters (`noTopWick` + `uptrendSlope` + `medianLine` SL). **Awaiting live demo forward-test.** Shorts keep the original breakout logic untouched.
+- Production script: `xauusd_5m_sniper.pine` = **v6.2 Parity** (Pine v6, `indicator()`, `max_labels_count=500`, one `alertcondition()`).
+- It is a signal-for-signal mirror of the user's `strategy()` **v6.2 [Restored Strategy]** baseline (**2.29 PF, 62.5% WR** on OANDA:XAUUSD 5m).
+  The user chose v6.2 on 2026-11-18, so it **supersedes rules 1, 6 and 9 above for this script**: the 200 EMA long filter,
+  Long SL = `min(ta.lowest(low, 3), medianLine)`, `longRR = 1.6`, `shortRR = 2.0`, entry window `0700-1945`, hold window `0700-2030`.
+- Parity engine (do not "simplify" it): the signal is on bar N, the virtual fill is at the open of N+1 ± 10 ticks of slippage (TP is measured from that fill),
+  the SL/TP bracket goes live at N+2 (gap-through fills at the open; if SL and TP both touch, the OHLC-path rule decides), and the
+  session-expiry exit applies from N+1. This is how TradingView's broker emulator runs CODE A, so the flat gate opens on the same bars.
+- Risk cap input: the default `Account % (live)` = 2% x balance ($9.71 at $485.57). `Fixed $ (CODE A parity)` = $10.00 reproduces
+  the backtest exactly. Trades with an SL distance in ($9.71, $10.00] are the only intended divergence.
+- Shorts have **no** 200 EMA filter (an earlier conversion wrongly added `close < EMA200`).
 
 ## 5. Working Rules for Claude in This Folder
 
 - Keep the workspace zero-dependency: plain files only, no package managers or build tools.
-- Any Pine change must preserve: `indicator()`, one `alertcondition()`, v6 syntax, the session/blocked windows, the RVOL filter, `medianLine` SL for both sides, and the `bar_index > entryBar` guard.
+- Any Pine change must preserve: `indicator()`, one `alertcondition()`, v6 syntax, the session/blocked windows, the RVOL filter, the v6.2 SL anchors (see section 4), and the N+1 fill / N+2 bracket parity engine (which is stricter than the old `bar_index > entryBar` guard).
 - Any trade-sizing advice must apply the $10 cap, the >$10 skip rule, and the <$0.50 warning.

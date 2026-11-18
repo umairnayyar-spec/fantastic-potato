@@ -10,12 +10,12 @@ averages or oscillators, and do not suggest converting it to a strategy.
 - **Asset & chart:** XAUUSD (Gold spot / USD), **5-minute (`5m`)** timeframe, OANDA feed on TradingView.
   - The trader noticed `15m` gives cleaner signals but chose to stay on `5m` for now. Do not switch timeframes unprompted.
 - **Execution broker:** Will Trade (**demo account**). Orders are placed by hand on mobile/desktop from TradingView alerts and the on-chart labels.
-- **Starting capital:** **$497.00 USD**.
+- **Starting capital:** **$497.00 USD**. Balance on 2026-11-18: **~$485.57** (max risk $9.71).
 
 ### Risk rules (strict)
 - Max risk per trade: **2% = $10.00 USD**, hard cap.
 - Contract math on Will Trade: **`0.01` lot = 1 oz Gold**, so a **$1.00 move in Gold = $1.00 P&L** per 0.01 lot.
-- Position size: `max_risk = min(2% × current balance, $10.00)`; `lots = floor(max_risk / |Entry − SL|) × 0.01` (never round up). Note 2% of $497 is $9.94, so the balance rule binds before the $10 cap. Use `risk_calc.py`.
+- Position size: `max_risk = min(2% × current balance, $10.00)`; `lots = floor(max_risk / |Entry − SL|) × 0.01` (never round up). The balance rule binds before the $10 cap. Use `risk_calc.py`: its RR defaults (1.6 long, 2.0 short) match the indicator.
 - **Skip rule:** if `|Entry − SL| > $10.00`, **skip the trade** — even 0.01 lot would break the 2% cap.
 - **Tight-stop warning:** if `|Entry − SL| < $0.50` (5 pips), warn that broker spread will likely sweep the stop.
 

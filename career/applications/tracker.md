@@ -21,6 +21,7 @@
 | 13 | Lumos | Head of People (remote) | https://jobs.ashbyhq.com/lumos/29f0a069-345f-495f-9e9e-81bebaefdc1c | 8 | sourced | 2026-07-16 ATS-scoped search | verify + CHECK geo eligibility + apply | Building People function, scaling 130→300. Remote. Direct Ashby link |
 | 14 | Netomi | VP, Head of People (remote) | https://jobs.lever.co/netomi/8733e855-ac79-4292-9595-c52dac4fd851 | 8 | sourced | 2026-07-16 ATS-scoped search | verify + CHECK geo eligibility + apply | Leads whole HR/People function, reports to EVP Ops. Remote. Direct Lever link |
 | 15 | Manychat | Head of People Operations (remote) | https://job-boards.greenhouse.io/manychat/jobs/8613227002 | 8 | sourced | 2026-07-16 ATS-scoped search | verify + CHECK geo eligibility + apply | People Ops leadership — matches Umair's HR-ops strength. Remote. Direct Greenhouse link |
+| 16 | VRChat | Head of People (remote, anywhere) | https://jobs.lever.co/vrchat/5f8683d1-c30e-4e47-8bfa-540e96b04020 | 8 | sourced | 2026-11-20 board-verified live (Firecrawl) | tailor + apply | Remote "Anywhere"; social VR / gaming platform ($100M raised); lean People function reporting into CEO; wants AI/automation in People workflows — matches ImagineArt story. Salary not listed |
 
 <!-- Example row:
 | 1 | Acme Travel | Head of Operations | https://... | 8/10 | applied | 2026-07-14 submitted via Greenhouse | follow up 2026-07-21 | recruiter: Jane Smith |
@@ -30,6 +31,20 @@
 
 <!-- Newest first. Every skill appends a dated line here when it acts. -->
 
+- 2026-11-20 — Fourth /find-jobs run (AI-company focus). Listed 20+ AI
+  employers' ATS boards directly (OpenAI, Anthropic, Cohere, Mistral,
+  ElevenLabs, Perplexity, Synthesia, poolside, Harvey, Lovable, n8n, Scale,
+  xAI, Glean, Deepgram, Writer, Sierra, Runway, DeepL, Photoroom, Turing).
+  Result: AI labs' HR roles are almost all US/Paris on-site, or need French
+  employment law. Added 1 (row 16: VRChat Head of People, remote-anywhere,
+  verified live). Borderline: Mistral Head of HRBP (Paris, relocation
+  support, but French employment law mandatory); Sonar Sr HRBP EMEA/APAC
+  (London, must be based there). Dropped after live-check: Epoch AI Head of
+  People (404), Legora People Partner (404), Deepgram Sr People Partner
+  (404), Zapier PBP (404), ElevenLabs People Partner GTM (US-only), Tribe AI
+  (posting replaced by a US Talent Manager role), Photoroom (French payroll +
+  fluent French). Note: Cohere's board shows no People roles now — row 10
+  likely closed; re-check before applying.
 - 2026-07-16 — Third /find-jobs run — METHOD UPGRADE (see
   career/search-playbook.md). Switched to ATS-domain-scoped search
   (greenhouse/lever/ashby). Quality jumped from board pages to direct apply

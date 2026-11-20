@@ -25,7 +25,7 @@ Fastest way: open Claude Code in this repo and say
 |---|---|
 | `/find-jobs` | Searches the web for matching openings, scores them, adds 7+/10 to the tracker |
 | `/tailor-resume <job url or tracker #>` | Builds an ATS-friendly 1–2 page resume + cover note for that job |
-| `/apply <job url or tracker #>` | Fills the application form in a browser, shows you everything, submits **only after you confirm** |
+| `/apply <job url or tracker #>` | Fills the application form in a browser. Roles scoring 8+ that pass every safety check are submitted automatically; the rest wait for your confirmation |
 | `/outreach <company or tracker #>` | Reverse recruiting: finds the hiring manager/recruiter, drafts a personalized message (Gmail draft — sent only after you approve) |
 | `/optimize-linkedin` | Generates paste-ready LinkedIn headline, About, experience copy, and skills list |
 | `/pipeline` | Pipeline status, overdue follow-ups, and tracker updates |
@@ -39,8 +39,11 @@ hands you a batch of submit/send decisions at the end.
 
 ## Guardrails (built into every skill)
 
-- **You always click Submit on applications and approve outreach sends**
-  (batch approval fine). The agent prepares everything; you fire.
+- **Applications:** roles scoring 8+ are auto-submitted when every safety
+  check passes (live employer posting, tailored resume, every answer from
+  your profile, no new questions, no login/CAPTCHA, max 5/day — full list in
+  `.claude/skills/apply/SKILL.md`). Everything else waits for your Submit.
+- **Outreach sends always need your approval** (batch approval fine).
 - Outreach rails: published addresses only, personalized, one per person,
   ≤10/day, every send logged. LinkedIn messages are never auto-sent.
 - **Nothing is ever fabricated** — resumes and messages only contain what's in

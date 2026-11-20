@@ -53,7 +53,9 @@
 
 - The tracker (`career/applications/tracker.md`) is the single source of
   truth; log every action there with a date.
-- Application submits and outreach sends always need Umair's explicit
+- Applications scoring 8+ that pass every gate of the Auto-submit policy
+  (`.claude/skills/apply/SKILL.md`, set 2026-11-20) are submitted without
+  asking; all other submits and every outreach send need Umair's explicit
   approval in the session doing the acting.
 - After any working session: update this file, commit, push — the other
   session picks it up from there.

@@ -5,6 +5,17 @@
 
 ## Winning techniques (use these first)
 
+0. **List job boards directly instead of searching (Round 4, 2026-11-20).**
+   Web-search snippets go stale: 5 of 8 ATS links from search were 404 or
+   replaced. Firecrawl's Alexandria providers read an employer's ATS board
+   live: `ashbyhq-com jobs/jobs` (board slug + `keyword` title filter — works
+   well), `lever-co jobs/postings`, `greenhouse-io jobs/search` (its keyword
+   matches full text, so results are noisy — filter titles yourself),
+   `smartrecruiters-com jobs/search_jobs` (cross-company; quote the title).
+   Every row it returns is live today. Use search only to discover WHICH
+   companies to list, then list their boards. Verify one posting with
+   `firecrawl_scrape` + a `query` prompt for location/eligibility.
+
 1. **Target ATS platforms directly — this is the #1 lever.** Constrain the
    search to the systems companies actually post through, using
    `allowed_domains`. This returns direct, applyable posting URLs instead of
@@ -49,6 +60,14 @@
 
 ## To try next round (hypotheses)
 
+- AI focus: frontier labs (OpenAI, Anthropic, Scale, xAI, Glean) hire HR
+  US-on-site; Mistral/Photoroom need French law. Better AI targets for Umair:
+  remote-first AI/tech firms ("hire anywhere"), GCC AI groups (G42 family:
+  Inception42, Core42, Presight, Space42, M42; HUMAIN; MBZUAI) — these use
+  their own career sites/Workday, so try `myworkdayjobs-com search_jobs`
+  with their career-site URL, and Pakistan AI-native firms (10Pearls,
+  Arbisoft, CureMD, Tkxel) via their own career pages.
+
 - For Pakistan-local: try `rozee.pk` and `mustakbil.com` domain-scoped (the
   main PK ATS/boards) — WebSearch under-indexes these.
 - For Sweden: scope to `careers.<company>.com` for the named targets
@@ -56,6 +75,13 @@
 - Try scoping to `linkedin.com/jobs/view` for individual LinkedIn postings.
 
 ## Round log
+
+- **Round 4 — 2026-11-20 (AI companies).** Search snippets mostly dead
+  (Epoch AI, Legora, Deepgram, Zapier all 404). Switched to listing ~21 AI
+  employers' ATS boards via Firecrawl — fast, all-live data. But HR roles at
+  AI labs are US/Paris-bound. Added 1 (VRChat Head of People, remote
+  anywhere). Borderline: Mistral Head of HRBP, Sonar Sr HRBP. Lesson: for a
+  Pakistan base, filter on location eligibility BEFORE industry.
 
 - **Round 3 — 2026-07-16.** Switched to ATS-domain-scoped search. Huge
   quality jump: ~15 direct-link roles vs prior rounds' board pages. Added

@@ -33,6 +33,9 @@ def main() -> None:
     prompt = (data.get("prompt") or "").strip()
     if not prompt or prompt.startswith("/"):
         return
+    # Skip harness-generated turns (notifications, reminders), not typed by the user.
+    if prompt.startswith("<") or "<system-reminder>" in prompt or "<task-notification>" in prompt:
+        return
     if prompt.lower().startswith("!q"):
         return
     forced = prompt.lower().startswith("!p")

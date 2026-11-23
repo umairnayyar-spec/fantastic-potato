@@ -87,7 +87,8 @@ highVolBreakUp = ta.crossover(close, upperBand) and highRvol
 barsSinceBreak = ta.barssince(highVolBreakUp)
 recentBreakUp  = not na(barsSinceBreak) and barsSinceBreak >= 1 and barsSinceBreak <= 8
 shallowDip     = low <= upperBand and close > medianLine
-bullishResume  = close > open and ta.rising(close, 1)
+closeRising    = ta.rising(close, 1)   // global: evaluated every bar (fixes CW10002)
+bullishResume  = close > open and closeRising
 localUptrend   = close > trendEma200
 crossDownLower = ta.crossunder(close, lowerBand)
 

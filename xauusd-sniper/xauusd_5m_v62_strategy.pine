@@ -1,7 +1,8 @@
 //@version=6
 // REFERENCE BACKTEST ONLY (CODE A, v6.2: 2.29 PF / 62.5% WR on OANDA:XAUUSD 5m).
 // Live trading + alerts use xauusd_5m_sniper.pine (indicator). Logic is unchanged from the
-// original v6.2; ta.rising / ta.crossunder are hoisted to global scope to clear CW10002.
+// original v6.2; ta.rising's bullish-bar-only history is reproduced at global scope and
+// ta.crossunder is hoisted (always ran anyway), clearing CW10002 without changing trades.
 strategy("XAUUSD 5m Asymmetric Pro v6.2 [Restored Strategy]",
          overlay=true,
          initial_capital=10000,
@@ -61,8 +62,14 @@ highVolBreakUp = ta.crossover(close, upperBand) and highRvol
 barsSinceBreak = ta.barssince(highVolBreakUp)
 recentBreakUp  = barsSinceBreak >= 1 and barsSinceBreak <= 8
 shallowDip     = low <= upperBand and close > medianLine
-closeRising    = ta.rising(close, 1)
-bullishResume  = close > open and closeRising
+// Exact v6.2 behaviour: the original `close > open and ta.rising(close, 1)` only ran ta.rising on
+// bullish bars (v6 lazy `and`), so ta.rising compared against the previous BULLISH bar's close,
+// not close[1]. Reproduced explicitly at global scope (no CW10002 warning, same signals).
+var float prevBullClose = na
+isBullBar      = close > open
+bullishResume  = isBullBar and close > prevBullClose
+if isBullBar
+    prevBullClose := close
 localUptrend   = close > trendEma200
 crossDownLower = ta.crossunder(close, lowerBand)
 

@@ -71,3 +71,4 @@ These were tested and discarded. Never re-suggest them.
 - Keep the workspace zero-dependency: plain files only, no package managers or build tools.
 - Any Pine change must preserve: `indicator()`, one `alertcondition()`, v6 syntax, the session/blocked windows, the RVOL filter, the v6.2 SL anchors (see section 4), and the N+1 fill / N+2 bracket parity engine (which is stricter than the old `bar_index > entryBar` guard).
 - Any trade-sizing advice must apply the $10 cap, the >$10 skip rule, and the <$0.50 warning.
+- **Always give the user ONE complete, copy-paste-ready Pine script in a single code block. Never send fragments or "replace these lines" snippets** (user instruction, 2026-11-24).

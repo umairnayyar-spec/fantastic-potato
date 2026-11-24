@@ -1,0 +1,91 @@
+//@version=6
+// REFERENCE BACKTEST ONLY: CODE A v6.2, kept VERBATIM. The two CW10002 warnings are expected and
+// harmless; do not "fix" them, because moving ta.rising/ta.crossunder can change which bars trade.
+strategy("XAUUSD 5m Asymmetric Pro v6.2 [Restored Strategy]", 
+         overlay=true, 
+         initial_capital=10000, 
+         default_qty_type=strategy.percent_of_equity, 
+         default_qty_value=15, 
+         slippage=10)
+
+entrySession = input.session("0700-1945:23456", title="New Entry Window (UTC)")
+holdSession  = input.session("0700-2030:23456", title="Max Trade Hold Window (UTC)")
+
+canEnter = not na(time(timeframe.period, entrySession, "UTC"))
+canHold  = not na(time(timeframe.period, holdSession, "UTC"))
+isGapOrRollover = (dayofweek == dayofweek.monday and hour < 1) or (hour == 21) or (hour == 22)
+
+allowedEntry = canEnter and not isGapOrRollover
+allowedHold  = canHold and not isGapOrRollover
+
+allowLongs   = input.bool(true, title="Enable Long Signals", group="Direction Controls")
+allowShorts  = input.bool(true, title="Enable Short Signals", group="Direction Controls")
+maxRiskUsd   = input.float(10.0, title="Max Stop Loss Distance ($ at 0.01 lot)", group="Risk Metrics")
+
+baseLength = input.int(20, title="Base Median Length", group="Breakout Engine")
+atrLength  = input.int(10, title="ATR Band Length", group="Breakout Engine")
+multiplier = input.float(1.8, title="ATR Band Multiplier", group="Breakout Engine")
+
+longRR     = input.float(1.6, title="Long Risk-to-Reward (1:X)", group="Risk Metrics")
+shortRR    = input.float(2.0, title="Short Risk-to-Reward (1:X)", group="Risk Metrics")
+
+medianLine = ta.ema(close, baseLength)
+bandRange  = ta.atr(atrLength) * multiplier
+
+upperBand = medianLine + bandRange
+lowerBand = medianLine - bandRange
+
+trendEma200 = ta.ema(close, 200)
+
+plot(medianLine, color=color.new(color.orange, 50), title="Median Base")
+plot(upperBand, color=color.new(color.green, 60), title="Upper Envelope")
+plot(lowerBand, color=color.new(color.red, 60), title="Lower Envelope")
+plot(trendEma200, color=color.new(color.blue, 40), linewidth=2, title="200 EMA Trend")
+
+rvolLength = input.int(20, title="Volume MA Length", group="Volume Confirmation")
+rvolThresh = input.float(1.5, title="Breakout RVOL Threshold", group="Volume Confirmation")
+
+volumeMA  = ta.sma(volume, rvolLength)
+highRvol  = volumeMA > 0 ? (volume / volumeMA) >= rvolThresh : true
+
+potentialLongSL  = math.min(ta.lowest(low, 3), medianLine)
+longDist         = close - potentialLongSL
+longRiskOK       = (longDist > 0) and (longDist <= maxRiskUsd)
+
+potentialShortSL = medianLine
+shortDist        = potentialShortSL - close
+shortRiskOK      = (shortDist > 0) and (shortDist <= maxRiskUsd)
+
+highVolBreakUp = ta.crossover(close, upperBand) and highRvol
+barsSinceBreak = ta.barssince(highVolBreakUp)
+recentBreakUp  = barsSinceBreak >= 1 and barsSinceBreak <= 8
+shallowDip     = low <= upperBand and close > medianLine
+bullishResume  = close > open and ta.rising(close, 1)
+localUptrend   = close > trendEma200
+
+buySignal  = allowLongs and localUptrend and recentBreakUp and shallowDip and bullishResume and longRiskOK and allowedEntry and (strategy.position_size == 0)
+sellSignal = allowShorts and ta.crossunder(close, lowerBand) and highRvol and shortRiskOK and allowedEntry and (strategy.position_size == 0)
+
+var float entrySL = na
+var float entryDist = na
+
+if buySignal
+    entrySL   := potentialLongSL
+    entryDist := longDist
+    strategy.entry("Retest Long", strategy.long)
+
+if sellSignal
+    entrySL   := potentialShortSL
+    entryDist := shortDist
+    strategy.entry("Breakout Short", strategy.short)
+
+if strategy.position_size > 0
+    strategy.exit("Exit Long", "Retest Long", stop=entrySL, limit=strategy.position_avg_price + (entryDist * longRR))
+
+if strategy.position_size < 0
+    strategy.exit("Exit Short", "Breakout Short", stop=entrySL, limit=strategy.position_avg_price - (entryDist * shortRR))
+
+if not allowedHold and strategy.position_size != 0
+    strategy.close_all(comment="Session Expiry Reset")
+
+bgcolor(allowedEntry ? color.new(#00E676, 98) : na)

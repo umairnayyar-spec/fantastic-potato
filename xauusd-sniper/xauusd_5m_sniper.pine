@@ -1,24 +1,52 @@
 //@version=6
-indicator("XAUUSD 5m Volatility Breakout [Anti-Trap Longs]", overlay=true)
+// XAUUSD 5m Asymmetric Pro — indicator() mirror of strategy "v6.2 [Restored Strategy]" (CODE A)
+// Signal logic is identical to CODE A. The position-state engine reproduces TradingView's
+// broker emulator (default settings: calc on bar close, market fill at next open,
+// strategy.exit placed one bar after the fill, OHLC intrabar path), so the "flat" gate
+// opens and closes on the same bars as strategy.position_size == 0 in CODE A.
+indicator("XAUUSD 5m Asymmetric Pro [v6.2 Parity]", overlay=true, max_labels_count=500)
 
 // ==============================
-// 1. TIME & DIRECTION FILTERS
+// 1. ACCOUNT, RISK & WILL TRADE HUD
 // ==============================
-tradeSession = input.session("0700-2030:23456", title="Allowed Trade Session (UTC)")
-inSession    = not na(time(timeframe.period, tradeSession, "UTC"))
+accountBalance = input.float(485.57, title="Current Account Balance ($)", group="Account & Risk")
+maxRiskPct     = input.float(2.0, title="Max Risk Per Trade (%)", group="Account & Risk")
+lotSize        = input.float(0.01, title="Planned Trade Lot Size", group="Account & Risk")
+brokerOffset   = input.float(4.00, title="Will Trade Price Offset ($ vs Chart)", group="Account & Risk")
+riskCapMode    = input.string("Account % (live)", title="SL Distance Cap Source", options=["Account % (live)", "Fixed $ (CODE A parity)"], group="Account & Risk")
+fixedMaxRisk   = input.float(10.0, title="Fixed Max SL Distance ($ at 0.01 lot) — CODE A", group="Account & Risk")
+
+simSlipTicks   = input.int(10, title="Backtest Slippage (ticks) — mirrors CODE A slippage=10", minval=0, group="Backtest Parity")
+
+dynamicMaxRisk = accountBalance * (maxRiskPct / 100.0)
+useFixedCap    = riskCapMode == "Fixed $ (CODE A parity)"
+ozPerLot       = lotSize * 100.0  // 0.01 lot = 1 oz -> $1 move = $1 P&L
+
+// ==============================
+// 2. SESSION FILTERS (identical to CODE A)
+// ==============================
+entrySession = input.session("0700-1945:23456", title="New Entry Window (UTC)")
+holdSession  = input.session("0700-2030:23456", title="Max Trade Hold Window (UTC)")
+
+canEnter = not na(time(timeframe.period, entrySession, "UTC"))
+canHold  = not na(time(timeframe.period, holdSession, "UTC"))
 isGapOrRollover = (dayofweek == dayofweek.monday and hour < 1) or (hour == 21) or (hour == 22)
-allowedTime     = inSession and not isGapOrRollover
+
+allowedEntry = canEnter and not isGapOrRollover
+allowedHold  = canHold and not isGapOrRollover
 
 allowLongs   = input.bool(true, title="Enable Long Signals", group="Direction Controls")
 allowShorts  = input.bool(true, title="Enable Short Signals", group="Direction Controls")
 
 // ==============================
-// 2. BREAKOUT ENVELOPE ENGINE
+// 3. BREAKOUT ENGINE (identical to CODE A)
 // ==============================
 baseLength = input.int(20, title="Base Median Length", group="Breakout Engine")
 atrLength  = input.int(10, title="ATR Band Length", group="Breakout Engine")
 multiplier = input.float(1.8, title="ATR Band Multiplier", group="Breakout Engine")
-rrRatio    = input.float(2.0, title="Risk-to-Reward Ratio (1:X)", group="Risk Metrics")
+
+longRR     = input.float(1.6, title="Long Risk-to-Reward (1:X)", group="Risk Metrics")
+shortRR    = input.float(2.0, title="Short Risk-to-Reward (1:X)", group="Risk Metrics")
 
 medianLine = ta.ema(close, baseLength)
 bandRange  = ta.atr(atrLength) * multiplier
@@ -26,75 +54,179 @@ bandRange  = ta.atr(atrLength) * multiplier
 upperBand = medianLine + bandRange
 lowerBand = medianLine - bandRange
 
+trendEma200 = ta.ema(close, 200)
+
 plot(medianLine, color=color.new(color.orange, 50), title="Median Base")
 plot(upperBand, color=color.new(color.green, 60), title="Upper Envelope")
 plot(lowerBand, color=color.new(color.red, 60), title="Lower Envelope")
+plot(trendEma200, color=color.new(color.blue, 40), linewidth=2, title="200 EMA Trend")
 
-// ==============================
-// 3. RELATIVE VOLUME & EXHAUSTION FILTERS
-// ==============================
 rvolLength = input.int(20, title="Volume MA Length", group="Volume Confirmation")
-rvolThresh = input.float(1.5, title="Relative Volume Threshold", group="Volume Confirmation") 
-volumeMA   = ta.sma(volume, rvolLength)
-volumeConfirmed = volumeMA > 0 ? (volume / volumeMA) >= rvolThresh : true
+rvolThresh = input.float(1.5, title="Breakout RVOL Threshold", group="Volume Confirmation")
 
-// Anti-Bull-Trap Filters for Longs
-candleRange  = high - low
-upperWick    = high - math.max(open, close)
-noTopWick    = candleRange > 0 ? (upperWick / candleRange) < 0.25 : false
-uptrendSlope = medianLine > medianLine[2]
+volumeMA  = ta.sma(volume, rvolLength)
+highRvol  = volumeMA > 0 ? (volume / volumeMA) >= rvolThresh : true
 
 // ==============================
-// 4. EXECUTION LOGIC & STATE CONTROL
+// 4. RISK GATES
 // ==============================
-var int posState = 0 // 0 = Flat, 1 = In Long, -1 = In Short
-var int entryBar = na
-var float activeSL = na
-var float activeTP = na
+potentialLongSL  = math.min(ta.lowest(low, 3), medianLine)
+longDist         = close - potentialLongSL
+longCashRisk     = longDist * ozPerLot
+longRiskOK       = longDist > 0 and (useFixedCap ? longDist <= fixedMaxRisk : longCashRisk <= dynamicMaxRisk)
 
-// Reset position state ONLY on bars AFTER the entry bar
-if posState == 1 and bar_index > entryBar and (low <= activeSL or high >= activeTP or not allowedTime)
-    posState := 0
-if posState == -1 and bar_index > entryBar and (high >= activeSL or low <= activeTP or not allowedTime)
-    posState := 0
+potentialShortSL = medianLine
+shortDist        = potentialShortSL - close
+shortCashRisk    = shortDist * ozPerLot
+shortRiskOK      = shortDist > 0 and (useFixedCap ? shortDist <= fixedMaxRisk : shortCashRisk <= dynamicMaxRisk)
 
-// Long requires: break above band + strong close (no exhaustion wick) + upward median slope + volume
-rawBuy  = allowLongs and (close > upperBand) and (close[1] <= upperBand[1]) and noTopWick and uptrendSlope and volumeConfirmed and allowedTime
+// ==============================
+// 5. RAW SIGNALS (identical to CODE A; all series evaluated at global scope every bar)
+// ==============================
+highVolBreakUp = ta.crossover(close, upperBand) and highRvol
+barsSinceBreak = ta.barssince(highVolBreakUp)
+recentBreakUp  = not na(barsSinceBreak) and barsSinceBreak >= 1 and barsSinceBreak <= 8
+shallowDip     = low <= upperBand and close > medianLine
+bullishResume  = close > open and ta.rising(close, 1)   // keep VERBATIM from v6.2 (CW10002 warning is expected)
+localUptrend   = close > trendEma200
+crossDownLower = ta.crossunder(close, lowerBand)
 
-// Short keeps original high-performing breakout logic untouched
-rawSell = allowShorts and ta.crossunder(close, lowerBand) and volumeConfirmed and allowedTime
+rawBuy  = allowLongs and localUptrend and recentBreakUp and shallowDip and bullishResume and longRiskOK and allowedEntry
+rawSell = allowShorts and crossDownLower and highRvol and shortRiskOK and allowedEntry
 
-buySignal  = rawBuy and (posState == 0)
-sellSignal = rawSell and (posState == 0)
+// ==============================
+// 6. POSITION ENGINE — mirrors CODE A's broker emulator
+//    Bar N   : signal at close, market order queued (position still flat in CODE A)
+//    Bar N+1 : fill at open ± slippage; strategy.exit placed at this bar's close
+//    Bar N+2+: stop/limit live; gap-through fills at open; if both touch, OHLC path decides
+//    Any bar >= N+1 with !allowedHold: close_all at close (fills next open in CODE A)
+// ==============================
+var int   posState  = 0     // 1 = long, -1 = short, 0 = flat
+var int   entryBar  = na    // signal bar N
+var float activeSL  = na
+var float entryDist = na
+var float fillPx    = na    // CODE A strategy.position_avg_price
+var float activeTP  = na    // set on the fill bar, like CODE A's strategy.exit
+
+slip = simSlipTicks * syminfo.mintick
+
+if barstate.isconfirmed and posState != 0
+    string exitTag = ""
+    float  exitPx  = na
+
+    if bar_index == entryBar + 1
+        // Fill bar: no bracket exists yet in CODE A, so SL/TP cannot trigger here.
+        fillPx   := posState == 1 ? open + slip : open - slip
+        activeTP := posState == 1 ? fillPx + entryDist * longRR : fillPx - entryDist * shortRR
+    else
+        openNearHigh = (high - open) < (open - low)   // emulator path: O-H-L-C, else O-L-H-C
+        if posState == 1
+            if open <= activeSL
+                exitTag := "SL"
+                exitPx  := open
+            else if open >= activeTP
+                exitTag := "TP"
+                exitPx  := open
+            else
+                hitSL = low <= activeSL
+                hitTP = high >= activeTP
+                if hitSL and hitTP
+                    exitTag := openNearHigh ? "TP" : "SL"
+                else if hitSL
+                    exitTag := "SL"
+                else if hitTP
+                    exitTag := "TP"
+                exitPx := exitTag == "SL" ? activeSL : exitTag == "TP" ? activeTP : na
+        else
+            if open >= activeSL
+                exitTag := "SL"
+                exitPx  := open
+            else if open <= activeTP
+                exitTag := "TP"
+                exitPx  := open
+            else
+                hitSL = high >= activeSL
+                hitTP = low <= activeTP
+                if hitSL and hitTP
+                    exitTag := openNearHigh ? "SL" : "TP"
+                else if hitSL
+                    exitTag := "SL"
+                else if hitTP
+                    exitTag := "TP"
+                exitPx := exitTag == "SL" ? activeSL : exitTag == "TP" ? activeTP : na
+
+    // Session expiry is checked on the fill bar too (CODE A's close_all runs whenever position != 0)
+    if exitTag == "" and not allowedHold
+        exitTag := "TIME"
+        exitPx  := close
+
+    if exitTag != ""
+        isLong = posState == 1
+        side   = isLong ? "LONG" : "SHORT"
+        if exitTag == "SL"
+            label.new(bar_index, exitPx, text="✖ " + side + " SL " + str.tostring(exitPx, "#.00"), style=isLong ? label.style_label_up : label.style_label_down, color=color.gray, textcolor=color.white, size=size.tiny)
+        else if exitTag == "TP"
+            label.new(bar_index, exitPx, text="✔ " + side + " TP " + str.tostring(exitPx, "#.00"), style=isLong ? label.style_label_down : label.style_label_up, color=color.green, textcolor=color.white, size=size.tiny)
+        else
+            label.new(bar_index, close, text="⏱ TIME EXIT (next open)", style=label.style_label_left, color=color.gray, textcolor=color.white, size=size.tiny)
+        posState  := 0
+        entryBar  := na
+        activeSL  := na
+        activeTP  := na
+        entryDist := na
+        fillPx    := na
+
+// Flat gate is read AFTER exits, so a new signal may fire on the same bar a bracket fills,
+// exactly like CODE A (strategy.position_size is already 0 at that bar's close).
+buySignal  = barstate.isconfirmed and posState == 0 and rawBuy
+sellSignal = barstate.isconfirmed and posState == 0 and rawSell
 
 if buySignal
-    posState := 1
-    entryBar := bar_index
-    activeSL := medianLine
-    activeTP := close + ((close - activeSL) * rrRatio)
-    label.new(bar_index, low, 
-              text="🟢 SNIPER LONG\n" + 
-                   "👉 ENTRY: " + str.tostring(close, "#.00") + "\n" +
-                   "🛑 STOP LOSS: " + str.tostring(activeSL, "#.00") + "\n" +
-                   "🎯 TAKE PROFIT: " + str.tostring(activeTP, "#.00"), 
+    posState  := 1
+    entryBar  := bar_index
+    activeSL  := potentialLongSL
+    entryDist := longDist
+    activeTP  := na
+    fillPx    := na
+    float planTP  = close + longDist * longRR
+    float wtEntry = close + brokerOffset
+    float wtSL    = potentialLongSL + brokerOffset
+    float wtTP    = planTP + brokerOffset
+    label.new(bar_index, low,
+              text="🟢 SNIPER LONG\n" +
+                   "📊 CHART: " + str.tostring(close, "#.00") + " (-$" + str.tostring(longCashRisk, "#.00") + ")\n" +
+                   "🏦 WILL TRADE (~+" + str.tostring(brokerOffset, "#.00") + "):\n" +
+                   "👉 BUY: " + str.tostring(wtEntry, "#.00") + "\n" +
+                   "🛑 SL: " + str.tostring(wtSL, "#.00") + "\n" +
+                   "🎯 TP: " + str.tostring(wtTP, "#.00"),
               style=label.style_label_up, color=#00E676, textcolor=color.white, yloc=yloc.belowbar, size=size.normal)
-
-if sellSignal
-    posState := -1
-    entryBar := bar_index
-    activeSL := medianLine
-    activeTP := close - ((activeSL - close) * rrRatio)
-    label.new(bar_index, high, 
-              text="🔴 SNIPER SHORT\n" + 
-                   "👉 ENTRY: " + str.tostring(close, "#.00") + "\n" +
-                   "🛑 STOP LOSS: " + str.tostring(activeSL, "#.00") + "\n" +
-                   "🎯 TAKE PROFIT: " + str.tostring(activeTP, "#.00"), 
+else if sellSignal
+    posState  := -1
+    entryBar  := bar_index
+    activeSL  := potentialShortSL
+    entryDist := shortDist
+    activeTP  := na
+    fillPx    := na
+    float planTP  = close - shortDist * shortRR
+    float wtEntry = close + brokerOffset
+    float wtSL    = potentialShortSL + brokerOffset
+    float wtTP    = planTP + brokerOffset
+    label.new(bar_index, high,
+              text="🔴 SNIPER SHORT\n" +
+                   "📊 CHART: " + str.tostring(close, "#.00") + " (-$" + str.tostring(shortCashRisk, "#.00") + ")\n" +
+                   "🏦 WILL TRADE (~+" + str.tostring(brokerOffset, "#.00") + "):\n" +
+                   "👉 SELL: " + str.tostring(wtEntry, "#.00") + "\n" +
+                   "🛑 SL: " + str.tostring(wtSL, "#.00") + "\n" +
+                   "🎯 TP: " + str.tostring(wtTP, "#.00"),
               style=label.style_label_down, color=color.red, textcolor=color.white, yloc=yloc.abovebar, size=size.normal)
 
 // ==============================
-// 5. UNIFIED MOBILE ALERT HOOK
+// 7. UNIFIED ALERT (create with "Once Per Bar Close")
 // ==============================
 anySignal = buySignal or sellSignal
-alertcondition(anySignal, title="Sniper Breakout Signal (Buy or Sell)", message="🚨 XAUUSD 5M BREAKOUT SIGNAL! Open TradingView to view Entry, SL, and TP.")
+alertcondition(anySignal, title="Sniper Breakout Signal (Buy or Sell)", message="🚨 XAUUSD 5M SIGNAL! Open chart for Will Trade Entry, SL, and TP.")
 
-bgcolor(allowedTime ? color.new(#00E676, 98) : na)
+// Data Window only: compare against the CODE A Strategy Tester trade list
+plot(posState, title="Sim Position (CODE A mirror)", display=display.data_window)
+
+bgcolor(allowedEntry ? color.new(#00E676, 98) : na)

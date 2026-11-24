@@ -2,7 +2,9 @@
 """XAUUSD pre-trade risk calculator for the Will Trade demo account.
 
 Usage:
-    python risk_calc.py --entry 2650.40 --sl 2646.10 [--balance 497] [--rr 2.0]
+    python risk_calc.py --entry 2650.40 --sl 2646.10 [--balance 485.57] [--rr X]
+
+RR defaults follow the v6.2 indicator: 1.6 for longs, 2.0 for shorts.
 
 Contract math: 0.01 lot = 1 oz Gold, so a $1.00 price move = $1.00 P&L per 0.01 lot.
 Rules (see CLAUDE.md):
@@ -22,13 +24,17 @@ HARD_CAP_USD = Decimal("10.00")
 MAX_SL_DIST = Decimal("10.00")
 MIN_SL_DIST = Decimal("0.50")
 USD_PER_DOLLAR_MOVE_PER_MICRO = Decimal("1.00")  # per 0.01 lot
+DEFAULT_RR = {"LONG": 1.6, "SHORT": 2.0}  # matches longRR / shortRR in xauusd_5m_sniper.pine
+DEFAULT_BALANCE = 485.57
 
 
 def calc(entry, sl, balance, rr):
-    entry, sl, balance, rr = (Decimal(str(x)) for x in (entry, sl, balance, rr))
     if entry == sl:
         raise ValueError("Entry and SL are identical.")
     direction = "LONG" if sl < entry else "SHORT"
+    if rr is None:
+        rr = DEFAULT_RR[direction]
+    entry, sl, balance, rr = (Decimal(str(x)) for x in (entry, sl, balance, rr))
     dist = abs(entry - sl)
     max_risk = min((balance * RISK_PCT).quantize(Decimal("0.01"), ROUND_DOWN), HARD_CAP_USD)
 
@@ -59,8 +65,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(description="XAUUSD pre-trade risk calculator (Will Trade, 0.01 lot = $1/$1 move)")
     p.add_argument("--entry", type=float, required=True, help="Entry price")
     p.add_argument("--sl", type=float, required=True, help="Stop loss price")
-    p.add_argument("--balance", type=float, default=497.0, help="Current account balance (default 497)")
-    p.add_argument("--rr", type=float, default=2.0, help="Reward:risk ratio (default 2.0)")
+    p.add_argument("--balance", type=float, default=DEFAULT_BALANCE, help=f"Current account balance (default {DEFAULT_BALANCE})")
+    p.add_argument("--rr", type=float, default=None, help="Reward:risk ratio (default: 1.6 long, 2.0 short, as in the v6.2 indicator)")
     a = p.parse_args(argv)
 
     try:

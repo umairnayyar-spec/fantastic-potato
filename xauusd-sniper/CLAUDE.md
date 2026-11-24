@@ -64,7 +64,7 @@ These were tested and discarded. Never re-suggest them.
 - Risk cap input: the default `Account % (live)` = 2% x balance ($9.71 at $485.57). `Fixed $ (CODE A parity)` = $10.00 reproduces
   the backtest exactly. Trades with an SL distance in ($9.71, $10.00] are the only intended divergence.
 - Shorts have **no** 200 EMA filter (an earlier conversion wrongly added `close < EMA200`).
-- **Never "fix" CW10002 by hoisting `ta.rising(close, 1)`.** In the original, v6 lazy `and` ran it only on bullish bars, so it compared against the previous *bullish* close. Hoisting it changed the long trigger (suspected cause of a 0.95 PF run on 2026-11-24; confirm against the untouched original). Keep the explicit `prevBullClose` form in both scripts.
+- **Leave the two CW10002 warnings alone.** Keep `bullishResume = close > open and ta.rising(close, 1)` and CODE A's inline `ta.crossunder` verbatim. On 2026-11-24, two attempts to silence the warnings (hoisting `ta.rising`, then a `prevBullClose` rewrite) were followed by profit factors of 0.95 and then near zero. The warnings are cosmetic. `xauusd_5m_v62_strategy.pine` is CODE A verbatim.
 
 ## 5. Working Rules for Claude in This Folder
 

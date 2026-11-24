@@ -87,14 +87,7 @@ highVolBreakUp = ta.crossover(close, upperBand) and highRvol
 barsSinceBreak = ta.barssince(highVolBreakUp)
 recentBreakUp  = not na(barsSinceBreak) and barsSinceBreak >= 1 and barsSinceBreak <= 8
 shallowDip     = low <= upperBand and close > medianLine
-// Exact v6.2 behaviour: the original `close > open and ta.rising(close, 1)` only ran ta.rising on
-// bullish bars (v6 lazy `and`), so ta.rising compared against the previous BULLISH bar's close,
-// not close[1]. Reproduced explicitly at global scope (no CW10002 warning, same signals).
-var float prevBullClose = na
-isBullBar      = close > open
-bullishResume  = isBullBar and close > prevBullClose
-if isBullBar
-    prevBullClose := close
+bullishResume  = close > open and ta.rising(close, 1)   // keep VERBATIM from v6.2 (CW10002 warning is expected)
 localUptrend   = close > trendEma200
 crossDownLower = ta.crossunder(close, lowerBand)
 

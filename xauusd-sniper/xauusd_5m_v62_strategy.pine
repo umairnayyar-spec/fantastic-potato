@@ -1,13 +1,11 @@
 //@version=6
-// REFERENCE BACKTEST ONLY (CODE A, v6.2: 2.29 PF / 62.5% WR on OANDA:XAUUSD 5m).
-// Live trading + alerts use xauusd_5m_sniper.pine (indicator). Logic is unchanged from the
-// original v6.2; ta.rising's bullish-bar-only history is reproduced at global scope and
-// ta.crossunder is hoisted (always ran anyway), clearing CW10002 without changing trades.
-strategy("XAUUSD 5m Asymmetric Pro v6.2 [Restored Strategy]",
-         overlay=true,
-         initial_capital=10000,
-         default_qty_type=strategy.percent_of_equity,
-         default_qty_value=15,
+// REFERENCE BACKTEST ONLY: CODE A v6.2, kept VERBATIM. The two CW10002 warnings are expected and
+// harmless; do not "fix" them, because moving ta.rising/ta.crossunder can change which bars trade.
+strategy("XAUUSD 5m Asymmetric Pro v6.2 [Restored Strategy]", 
+         overlay=true, 
+         initial_capital=10000, 
+         default_qty_type=strategy.percent_of_equity, 
+         default_qty_value=15, 
          slippage=10)
 
 entrySession = input.session("0700-1945:23456", title="New Entry Window (UTC)")
@@ -62,19 +60,11 @@ highVolBreakUp = ta.crossover(close, upperBand) and highRvol
 barsSinceBreak = ta.barssince(highVolBreakUp)
 recentBreakUp  = barsSinceBreak >= 1 and barsSinceBreak <= 8
 shallowDip     = low <= upperBand and close > medianLine
-// Exact v6.2 behaviour: the original `close > open and ta.rising(close, 1)` only ran ta.rising on
-// bullish bars (v6 lazy `and`), so ta.rising compared against the previous BULLISH bar's close,
-// not close[1]. Reproduced explicitly at global scope (no CW10002 warning, same signals).
-var float prevBullClose = na
-isBullBar      = close > open
-bullishResume  = isBullBar and close > prevBullClose
-if isBullBar
-    prevBullClose := close
+bullishResume  = close > open and ta.rising(close, 1)
 localUptrend   = close > trendEma200
-crossDownLower = ta.crossunder(close, lowerBand)
 
 buySignal  = allowLongs and localUptrend and recentBreakUp and shallowDip and bullishResume and longRiskOK and allowedEntry and (strategy.position_size == 0)
-sellSignal = allowShorts and crossDownLower and highRvol and shortRiskOK and allowedEntry and (strategy.position_size == 0)
+sellSignal = allowShorts and ta.crossunder(close, lowerBand) and highRvol and shortRiskOK and allowedEntry and (strategy.position_size == 0)
 
 var float entrySL = na
 var float entryDist = na
